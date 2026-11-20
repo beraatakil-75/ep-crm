@@ -1,0 +1,46 @@
+rules_version = '2';
+
+// Zugriffsregeln für das CRM des Effekten Parkett.
+// In der Firebase-Konsole unter Firestore Database > Regeln einfügen und veröffentlichen.
+//
+// Wer darf was?
+// - Lesen und Schreiben: nur angemeldete Personen mit bestätigter E-Mail, die auf der Freigabeliste stehen.
+// - Freigabeliste ändern: nur Personen mit der Rolle "verwalter".
+// - Niemand kann sich selbst entfernen. So sperrt sich die Verwaltung nicht aus Versehen aus.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function bestaetigt() {
+      return request.auth != null
+        && request.auth.token.email != null
+        && request.auth.token.email_verified == true;
+    }
+    function meineAdresse() {
+      return request.auth.token.email.lower();
+    }
+    function freigegeben() {
+      return bestaetigt()
+        && exists(/databases/$(database)/documents/zugang/$(meineAdresse()));
+    }
+    function verwalter() {
+      return freigegeben()
+        && get(/databases/$(database)/documents/zugang/$(meineAdresse())).data.rolle == 'verwalter';
+    }
+
+    // Freigabeliste: Dokument-ID = E-Mail-Adresse in Kleinbuchstaben
+    match /zugang/{adresse} {
+      allow read: if freigegeben() || (bestaetigt() && adresse == meineAdresse());
+      allow create, update: if verwalter()
+        && adresse == adresse.lower()
+        && request.resource.data.rolle in ['verwalter', 'mitglied'];
+      allow delete: if verwalter() && adresse != meineAdresse();
+    }
+
+    // Daten des CRM
+    match /{sammlung}/{eintrag} {
+      allow read, write: if freigegeben()
+        && sammlung in ['firmen', 'kontakte', 'anfragen', 'verlauf', 'vorlagen', 'team'];
+    }
+  }
+}

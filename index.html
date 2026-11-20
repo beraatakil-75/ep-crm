@@ -1,0 +1,2141 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#183050">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EP CRM">
+<title>Effekten Parkett CRM</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='30' height='30' rx='6' fill='%23183050'/%3E%3Cpath d='M9 21v-6M15 21V10M21 21V7' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M6.5 24h17' stroke='%23D8B25A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: marineblaue Kopfleiste mit Reitern, darunter eine Inhaltsspalte (max. 1180px). Listen werden unter 760px zu Karten, Detailseiten unter 900px einspaltig. */
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --surface-2:#F7F8FA; --fg:#13223A; --muted:#5A6779;
+  --line:#DCE1E9; --line-strong:#C2CAD6;
+  --brand:#183050; --brand-line:rgba(255,255,255,.14); --brand-dim:rgba(255,255,255,.72);
+  --pri:#183050; --pri-fg:#FFFFFF; --link:#1F4A80;
+  --gold:#A9822A; --gold-soft:#F6EED9; --gold-fg:#3A2C08;
+  --b-tone:#183050; --b-soft:#E3EAF3;
+  --c-tone:#6E7888; --c-soft:#EEF0F3;
+  --danger:#B42318; --danger-soft:#FDECEA; --warn:#9A5507; --warn-soft:#FEF2DC; --ok:#08724A; --ok-soft:#E4F4EB;
+  --tk-warn:#FDB022;
+  --shadow:0 1px 2px rgba(19,34,58,.06),0 10px 30px rgba(19,34,58,.12);
+  --scrim:rgba(10,18,30,.5);
+  --f-display:"EB Garamond",Garamond,"Times New Roman",serif;
+  --f-ui:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C141F; --surface:#132031; --surface-2:#172639; --fg:#E5EAF1; --muted:#98A4B6;
+    --line:#233249; --line-strong:#33465F;
+    --brand:#14294A; --brand-line:rgba(255,255,255,.12); --brand-dim:rgba(255,255,255,.7);
+    --pri:#8DB4EA; --pri-fg:#0C141F; --link:#8DB4EA;
+    --gold:#D8B25A; --gold-soft:#3A2F14; --gold-fg:#F6E7BF;
+    --b-tone:#8DB4EA; --b-soft:#1B2C45;
+    --c-tone:#8E99AA; --c-soft:#1C2737;
+    --danger:#F97066; --danger-soft:#3B1A1A; --warn:#FDB022; --warn-soft:#3A2A0E; --ok:#47CD89; --ok-soft:#10301F;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+    --scrim:rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C141F; --surface:#132031; --surface-2:#172639; --fg:#E5EAF1; --muted:#98A4B6;
+  --line:#233249; --line-strong:#33465F;
+  --brand:#14294A; --brand-line:rgba(255,255,255,.12); --brand-dim:rgba(255,255,255,.7);
+  --pri:#8DB4EA; --pri-fg:#0C141F; --link:#8DB4EA;
+  --gold:#D8B25A; --gold-soft:#3A2F14; --gold-fg:#F6E7BF;
+  --b-tone:#8DB4EA; --b-soft:#1B2C45;
+  --c-tone:#8E99AA; --c-soft:#1C2737;
+  --danger:#F97066; --danger-soft:#3B1A1A; --warn:#FDB022; --warn-soft:#3A2A0E; --ok:#47CD89; --ok-soft:#10301F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.4);
+  --scrim:rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--fg);font:15px/1.5 var(--f-ui);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--brand)}
+body.modal-open{overflow:hidden}
+a{color:var(--link)}
+button{font:inherit}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+
+/* Kopfleiste */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--brand);color:#fff}
+.top-in,.tabs-in{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:12px 16px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;color:inherit;text-decoration:none;min-width:0}
+.brand svg{flex:none}
+.brand .gold{stroke:var(--gold)}
+.wm{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.wm-1{font-family:var(--f-display);font-size:22px;letter-spacing:.06em;font-weight:500;white-space:nowrap}
+.wm-2{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brand-dim);white-space:nowrap}
+.me{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-dim)}
+.me select{color-scheme:dark;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:6px 8px;font:14px var(--f-ui);letter-spacing:0;text-transform:none;max-width:180px}
+.tabs{border-top:1px solid var(--brand-line)}
+.tabs-in{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs-in::-webkit-scrollbar{display:none}
+.tabs a{color:var(--brand-dim);text-decoration:none;padding:10px 12px;font-size:14px;white-space:nowrap;border-bottom:2px solid transparent}
+.tabs a:hover{color:#fff}
+.tabs a.on{color:#fff;border-bottom-color:var(--gold)}
+
+main{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 72px}
+
+/* Seitenkopf */
+.ph{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 16px;margin-bottom:18px}
+.ph h1{font-family:var(--f-display);font-weight:500;font-size:clamp(28px,4vw,36px);line-height:1.1;letter-spacing:.01em;margin:0;text-wrap:balance}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+
+/* Knöpfe */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg);border-radius:6px;padding:8px 12px;font:500 14px var(--f-ui);cursor:pointer;text-decoration:none;line-height:1.2;white-space:nowrap}
+.btn:hover{border-color:var(--fg)}
+.btn.pri{background:var(--pri);border-color:var(--pri);color:var(--pri-fg)}
+.btn.pri:hover{filter:brightness(1.12)}
+.btn.danger{color:var(--danger);border-color:var(--danger);background:transparent}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.ghost:hover{border-color:var(--line-strong)}
+.btn.sm{padding:4px 9px;font-size:13px}
+.btn:disabled{opacity:.55;cursor:default}
+.linkbtn{background:none;border:0;padding:0;color:var(--link);cursor:pointer;text-decoration:underline;text-underline-offset:2px;font:inherit;text-align:left}
+
+/* Hinweise */
+.note{border:1px solid var(--line);background:var(--surface-2);padding:10px 14px;border-radius:6px;margin-bottom:16px;font-size:14px}
+.note.warn{background:var(--warn-soft);border-color:transparent;color:var(--fg)}
+.note.warn b{color:var(--warn)}
+.note.gold{background:var(--gold-soft);border-color:transparent;color:var(--gold-fg)}
+
+/* Kurstafel */
+.ticker{background:var(--brand);color:#fff;border-radius:var(--r);display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));overflow:hidden;margin-bottom:20px}
+.tk{padding:14px 16px;border-right:1px solid var(--brand-line);border-bottom:1px solid var(--brand-line);text-decoration:none;color:inherit}
+.tk-l{font:500 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-dim)}
+.tk-v{font:500 28px/1.2 var(--f-mono);font-variant-numeric:tabular-nums}
+.tk-v.warn{color:var(--tk-warn)}
+
+/* Bereiche */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+.panel-h{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.panel-h h2{font:600 12px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;margin:0;color:var(--muted)}
+.panel-b{padding:14px 16px}
+.panel-b > p:first-child{margin-top:0}
+.panel-b > p:last-child{margin-bottom:0}
+.empty{padding:16px;color:var(--muted);font-size:14px}
+.g2{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:20px;align-items:start}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.stack{display:flex;flex-direction:column;gap:20px;min-width:0}
+@media (max-width:900px){.g2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.g3{grid-template-columns:minmax(0,1fr)}}
+
+/* Wichtigkeit */
+.kl{display:inline-flex;align-items:center;justify-content:center;min-width:64px;height:24px;padding:0 8px;border-radius:5px;font:600 12px var(--f-ui);letter-spacing:.03em;border:1px solid;flex:none;white-space:nowrap}
+.kl.A{background:var(--gold-soft);border-color:var(--gold);color:var(--gold-fg)}
+.kl.B{background:var(--b-soft);border-color:var(--b-tone);color:var(--b-tone)}
+.kl.C{background:var(--c-soft);border-color:var(--line-strong);color:var(--c-tone)}
+.kl.lg{min-width:96px;height:36px;font-size:16px;border-radius:7px}
+.kl.sm{min-width:54px;height:20px;font-size:11px;padding:0 6px;border-radius:4px}
+.dots{display:inline-flex;gap:3px;align-items:center;vertical-align:middle}
+.dots i{display:block;width:8px;height:8px;border-radius:50%;border:1px solid var(--line-strong)}
+.dots i.on{background:var(--pri);border-color:var(--pri)}
+.wbox{display:flex;gap:12px;align-items:flex-start}
+.wbox b{font-size:16px}
+.wbox p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.rw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px;font-size:12.5px}
+.rw-s{padding:1px 8px;border-radius:999px;font-weight:500;white-space:nowrap}
+.rw-s.up{background:var(--ok-soft);color:var(--ok)}
+.rw-s.down{background:var(--danger-soft);color:var(--danger)}
+.bsp-r{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.bsp-r .rw{margin-top:0}
+.umgang{margin-top:14px;padding:10px 12px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);font-size:14px}
+.umgang b{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+table.mx{border-collapse:separate;border-spacing:3px;font-size:12.5px;margin:10px 0 0;width:100%}
+table.mx th{font-weight:500;color:var(--muted);text-align:center;padding:2px;font-size:11px;line-height:1.25}
+table.mx tbody th{text-align:left}
+table.mx td{text-align:center;padding:4px 2px;border-radius:6px;border:2px solid transparent}
+table.mx .kl.sm{min-width:0;width:100%;max-width:72px}
+table.mx td.hl{border-color:var(--fg);background:var(--surface-2)}
+table.mx.big{font-size:14px;border-spacing:6px;width:auto;min-width:min(100%,560px)}
+table.mx.big th{font-size:13px}
+table.mx.big tbody th{white-space:nowrap}
+table.mx.big td{padding:10px 4px}
+
+.chip{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.gold{background:var(--gold-soft);border-color:transparent;color:var(--gold-fg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+
+.due{display:inline-block;font:500 12px var(--f-mono);padding:2px 7px;border-radius:4px;white-space:nowrap;background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.due.over{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.due.today{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.due.soon{background:var(--b-soft);color:var(--b-tone);border-color:transparent}
+
+/* Werkzeugleiste */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.tools .search{flex:1 1 240px;min-width:0}
+.tools input,.tools select{font:14px var(--f-ui);color:var(--fg);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:8px 10px;max-width:100%}
+.tools .search input{width:100%}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;max-width:100%}
+.seg button{border:0;background:var(--surface);color:var(--muted);padding:7px 12px;cursor:pointer;font:500 13px var(--f-ui);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--pri);color:var(--pri-fg)}
+.check{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--muted);text-transform:none;letter-spacing:0;cursor:pointer}
+
+/* Listen */
+.list{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.grp{padding:9px 16px;background:var(--surface-2);border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.grp b{color:var(--fg);letter-spacing:.06em}
+.row{display:grid;grid-template-columns:72px minmax(0,2.1fr) minmax(0,1.7fr) minmax(0,.9fr) minmax(0,1.3fr);gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.row.fr{grid-template-columns:44px minmax(0,2.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)}
+.list > .row:last-child{border-bottom:0}
+a.row:hover{background:var(--surface-2)}
+.row-h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-block:8px}
+.r-main{min-width:0}
+.r-title{font-weight:600;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-sub{color:var(--muted);font-size:13px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-meta{display:none;color:var(--muted);font-size:12.5px;margin-top:2px}
+.r-col{font-size:13px;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:760px){
+  .row,.row.fr{grid-template-columns:72px minmax(0,1fr);align-items:start}
+  .row.fr{grid-template-columns:44px minmax(0,1fr)}
+  .row .r-col,.row-h{display:none}
+  .r-meta{display:block}
+}
+
+.il{list-style:none;margin:0;padding:0}
+.il li{display:flex;gap:12px;align-items:flex-start;padding:10px 16px;border-bottom:1px solid var(--line)}
+.il li:last-child{border-bottom:0}
+.il .grow{flex:1;min-width:0}
+.il .t{font-weight:600;color:inherit;text-decoration:none}
+.il a.t:hover{text-decoration:underline}
+.il .s{font-size:13px;color:var(--muted)}
+.il .side{flex:none;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+
+/* Stufen-Übersicht */
+.funnel{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;padding:14px 16px}
+@media (max-width:760px){.funnel{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.fs{border:1px solid var(--line);border-radius:6px;padding:8px 10px;text-decoration:none;color:inherit;background:var(--surface-2);min-width:0}
+.fs b{display:block;font:500 22px/1.2 var(--f-mono);font-variant-numeric:tabular-nums}
+.fs span{display:block;font-size:11.5px;line-height:1.25;color:var(--muted)}
+.fs.zero b{color:var(--line-strong)}
+
+/* Detailseiten */
+.back{display:inline-block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:10px}
+.back:hover{color:var(--fg)}
+.dh{display:flex;gap:16px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap}
+.dh-main{flex:1 1 320px;min-width:0}
+.dh h1{font-family:var(--f-display);font-weight:500;font-size:clamp(28px,4.5vw,40px);margin:0;line-height:1.08;text-wrap:balance}
+.dh .sub{color:var(--muted);margin-top:4px}
+.dh .chips{margin-top:10px}
+.detail{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.detail{grid-template-columns:minmax(0,1fr)}}
+dl.kv{display:grid;grid-template-columns:minmax(96px,max-content) minmax(0,1fr);gap:8px 16px;margin:0;font-size:14px}
+dl.kv dt{color:var(--muted);font-size:13px}
+dl.kv dd{margin:0;overflow-wrap:anywhere}
+.copyrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.copyrow span{user-select:all}
+.next{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.next .what{font-size:16px;font-weight:600}
+.pre{white-space:pre-wrap;margin:0}
+
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:4px 12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.tl li:last-child{border-bottom:0}
+.tl .d{font:13px var(--f-mono);color:var(--muted);padding-top:2px}
+.tl .c{min-width:0}
+.tl .c p{margin:4px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.tl .m{font-size:12.5px;color:var(--muted);margin-top:4px}
+@media (max-width:520px){.tl li{grid-template-columns:minmax(0,1fr) auto}.tl .d{grid-column:1/-1}}
+
+/* Organigramm */
+.org{padding:6px 16px 16px}
+.lvl{position:relative;padding:14px 0 6px}
+.lvl + .lvl{border-top:1px dashed var(--line)}
+.lvl-h{font:500 10.5px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:10px}
+.lvl-c{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.oc{display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;width:228px;max-width:100%;text-decoration:none;color:inherit}
+.oc:hover{border-color:var(--line-strong);background:var(--surface-2)}
+.oc.A{border-color:var(--gold)}
+.oc .n{font-weight:600;font-size:14px;line-height:1.25}
+.oc .p{font-size:12.5px;color:var(--muted);line-height:1.3}
+.oc .u{font-size:11.5px;color:var(--muted)}
+.oc-empty{border:1px dashed var(--line-strong);border-radius:8px;padding:9px 14px;color:var(--muted);font-size:13px}
+
+/* Tafel */
+.board{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(232px,1fr);gap:12px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x proximity}
+@media (max-width:760px){.board{grid-auto-columns:84%}}
+.col{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:10px;min-height:140px;scroll-snap-align:start;min-width:0}
+.col-h{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:2px 2px 10px}
+.col-h b{font-family:var(--f-mono);color:var(--fg)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:6px;margin-bottom:8px;min-width:0}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+.card-t{background:none;border:0;padding:0;text-align:left;font:600 14px var(--f-ui);color:var(--fg);cursor:pointer;overflow-wrap:anywhere}
+.card-t:hover{text-decoration:underline}
+.card-s{font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.card-f{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:12px;border-top:1px solid var(--line);padding-top:6px;margin-top:2px}
+.mv{display:flex;gap:4px}
+
+/* Willkommen und Spickzettel */
+.welcome h2,.disp{font-family:var(--f-display);font-weight:500;font-size:28px;margin:0 0 6px;line-height:1.15}
+.steps{margin:16px 0 0;padding:0;list-style:none;counter-reset:s;display:grid;gap:12px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-fg);background:var(--gold-soft);font:600 14px var(--f-mono)}
+.steps p{margin:2px 0 8px;color:var(--muted);font-size:14px;max-width:62ch}
+.lead{font-size:16px;max-width:64ch;margin:0 0 4px}
+.kcard{border:1px solid var(--line);border-radius:var(--r);padding:14px;background:var(--surface)}
+.kcard p{margin:8px 0 0;font-size:14px}
+.bek{display:grid;gap:10px}
+.bek > div{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start}
+.bek p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.tipp{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.tipp li{padding-left:14px;border-left:2px solid var(--line-strong);font-size:14px}
+.titeltest{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.titeltest input{flex:1 1 260px;min-width:0;font:15px var(--f-ui);color:var(--fg);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:9px 11px}
+.titeltest .res{flex:1 1 100%;font-size:14px}
+
+/* Tabellen */
+.tbl-wrap{overflow-x:auto}
+table.tbl{border-collapse:collapse;width:100%;font-size:14px}
+table.tbl th,table.tbl td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.tbl th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+table.tbl td:first-child{font-weight:500}
+.rules{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14px}
+dl.lex{display:grid;grid-template-columns:minmax(120px,max-content) minmax(0,1fr);gap:8px 16px;margin:0;font-size:14px}
+dl.lex dt{font-weight:600}
+dl.lex dd{margin:0;color:var(--muted)}
+@media (max-width:520px){dl.lex{grid-template-columns:minmax(0,1fr)}dl.lex dd{margin-bottom:6px}}
+
+/* Vorlagen */
+.tpl{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.tpl .panel-b .pre{font-size:13.5px;color:var(--muted);max-height:9.5em;overflow:hidden}
+.legend{display:flex;flex-wrap:wrap;gap:6px}
+.legend code{font:12.5px var(--f-mono);background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+
+/* Dialog */
+.mb{position:fixed;inset:0;background:var(--scrim);z-index:50;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding-top:max(24px,env(safe-area-inset-top,0px));padding-bottom:max(24px,env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.md{background:var(--surface);color:var(--fg);border-radius:10px;width:min(760px,100%);box-shadow:var(--shadow);border:1px solid var(--line);margin:auto 0}
+.md.narrow{width:min(520px,100%)}
+.md-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.md-h h2{font-family:var(--f-display);font-weight:500;font-size:26px;margin:0;line-height:1.15}
+.md-b{padding:16px 20px}
+.md-b > p{margin-top:0}
+.md-f{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 20px;border-top:1px solid var(--line);background:var(--surface);border-radius:0 0 10px 10px}
+.md-f .left{margin-right:auto}
+.fg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+.fg .full{grid-column:1/-1}
+@media (max-width:600px){.fg{grid-template-columns:minmax(0,1fr)}}
+.f{min-width:0}
+fieldset.f{border:0;margin:0;padding:0}
+.f label,.f legend{display:block;font-size:12.5px;font-weight:500;color:var(--muted);margin-bottom:4px;padding:0}
+fieldset.f legend{font-size:14px;font-weight:600;color:var(--fg);margin-bottom:6px}
+.f label.choice{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;margin:0;font-size:14px;font-weight:400;color:var(--fg)}
+.f input,.f select,.f textarea{width:100%;font:14px var(--f-ui);color:var(--fg);background:var(--surface);border:1px solid var(--line-strong);border-radius:6px;padding:8px 10px}
+.f textarea{min-height:92px;resize:vertical;line-height:1.5}
+.f textarea.tall{min-height:300px}
+.f .hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+.f input[type=checkbox],.f input[type=radio]{width:auto}
+@media (max-width:600px){.f input,.f select,.f textarea,.tools input,.tools select,.titeltest input{font-size:16px}}
+.fsec{grid-column:1/-1;font:600 11.5px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:2px}
+.fsec:first-child{border-top:0;padding-top:0;margin-top:0}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.choice{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line-strong);border-radius:8px;padding:10px 12px;cursor:pointer;background:var(--surface);margin:0}
+.choice input{margin-top:3px;accent-color:var(--pri);flex:none}
+.choice b{display:block;font-size:14px;color:var(--fg);font-weight:600}
+.choice small{display:block;font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:2px;font-weight:400}
+.choice:has(input:checked){border-color:var(--pri);background:var(--b-soft)}
+.erkannt{display:block;margin-top:6px;font-size:13px;padding:8px 10px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--fg)}
+.erkannt:empty{display:none}
+.erkannt.no{background:var(--warn-soft);border-color:transparent}
+.result{grid-column:1/-1;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--surface-2)}
+.result .umgang{background:var(--surface)}
+details.more{grid-column:1/-1;border:1px solid var(--line);border-radius:8px;padding:0}
+details.more > summary{cursor:pointer;padding:10px 14px;font-size:14px;font-weight:500;color:var(--link)}
+details.more > .fg{padding:4px 14px 14px}
+.cbline{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
+.cbline input{margin-top:3px;accent-color:var(--pri)}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:8px;z-index:60;font-size:14px;max-width:calc(100% - 32px);box-shadow:var(--shadow)}
+.toast.err{background:var(--danger);color:#fff}
+
+.ro .w{display:none!important}
+@media (prefers-reduced-motion:no-preference){.btn,.row,.oc,.fs,.choice{transition:background-color .15s,border-color .15s}}
+/* Anmeldung (GitHub-Version) */
+[hidden]{display:none!important}
+.hdr-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hdr-out{background:transparent;color:var(--brand-dim);border-color:rgba(255,255,255,.28)}
+.hdr-out:hover{color:#fff;border-color:#fff}
+body.gated .tabs,body.gated .hdr-r,body.gated main{display:none}
+body:not(.gated) .gate{display:none}
+.gate{max-width:460px;margin:0 auto;padding:40px max(16px,env(safe-area-inset-right,0px)) 72px max(16px,env(safe-area-inset-left,0px))}
+.gate .panel-b{padding:24px}
+.gate h1{font-family:var(--f-display);font-weight:500;font-size:clamp(28px,6vw,34px);line-height:1.1;margin:0 0 10px;text-wrap:balance}
+.gate p{font-size:14.5px}
+.gate .f{margin-bottom:12px}
+.gate code{font:13px var(--f-mono);background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;overflow-wrap:anywhere}
+.gate .actions{margin-top:16px}
+.gform{margin-top:18px}
+.gerr{color:var(--danger);font-size:13.5px;min-height:1.3em;margin:2px 0 10px}
+.btn.wide{width:100%;padding-block:10px}
+.sw{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;margin-top:16px;font-size:14px}
+.acct-row{border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:8px 12px;align-items:center;flex-wrap:wrap;font-size:14px;padding-block:10px}
+.acct-row .muted{overflow-wrap:anywhere;min-width:0}
+.zl li{flex-wrap:wrap}
+.zl .grow{flex:1 1 230px}
+.zl .side{margin-left:auto}
+</style>
+</head>
+<body class="gated">
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#start" aria-label="Zur Übersicht">
+      <svg viewBox="0 0 30 30" width="32" height="32" aria-hidden="true" fill="none">
+        <rect x=".75" y=".75" width="28.5" height="28.5" rx="6" stroke="currentColor" stroke-opacity=".45"/>
+        <path d="M9 21v-6M15 21V10M21 21V7" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path class="gold" d="M6.5 24h17" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="wm"><span class="wm-1">Corporate Relations</span><span class="wm-2">Effekten Parkett · CRM</span></span>
+    </a>
+    <div class="hdr-r"><label class="me" for="me-select">Ich bin <select id="me-select"></select></label><button type="button" class="btn sm hdr-out" data-act="abmelden">Abmelden</button></div>
+  </div>
+  <nav class="tabs" aria-label="Bereiche">
+    <div class="tabs-in" id="tabs">
+      <a href="#start" data-tab="start">Übersicht</a>
+      <a href="#kontakte" data-tab="kontakte">Kontakte</a>
+      <a href="#unternehmen" data-tab="unternehmen">Unternehmen</a>
+      <a href="#anfragen" data-tab="anfragen">Anfragen</a>
+      <a href="#vorlagen" data-tab="vorlagen">Vorlagen</a>
+      <a href="#hilfe" data-tab="hilfe">Spickzettel</a>
+      <a href="#team" data-tab="team">Team &amp; Daten</a>
+    </div>
+  </nav>
+</header>
+<main id="view"></main>
+<div id="gate" class="gate" aria-live="polite"></div>
+<div id="modal-root"></div>
+<div id="toast" class="toast" role="status" hidden></div>
+<input type="file" id="import-file" accept="application/json,.json" hidden>
+<datalist id="dl-quelle"><option value="Webseite des Unternehmens"><option value="LinkedIn"><option value="Messe oder Veranstaltung"><option value="Empfehlung"><option value="Persönlicher Kontakt"><option value="Hochschule"></datalist>
+
+<script src="firebase-config.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ---------- Das einfache Wichtigkeits-Modell ----------
+   Zwei Fragen entscheiden: Wie bekannt ist das Unternehmen? Wie hoch sitzt die Person?
+   Kennt uns die Person schon gut oder hat sie einen Bezug zur HfWU, rutscht sie eine Stufe hoch. */
+const POS = {
+  chef:{l:'Chefetage', h:'Vorstand, Geschäftsführung, Inhaber oder Partner. Entscheidet über das ganze Unternehmen.'},
+  fuehrung:{l:'Führungskraft', h:'Leitet einen Bereich, eine Abteilung oder ein Team. Zum Beispiel Head of, Leiter, Director.'},
+  mitarbeiter:{l:'Mitarbeiter', h:'Fachkraft ohne Führung. Zum Beispiel HR, Recruiting, Analyst, Berater, Assistenz.'}
+};
+const POS_ORDER = ['chef','fuehrung','mitarbeiter'];
+const BEK = {
+  sehr:{l:'Kennt fast jeder', zeile:'Kennt fast jeder', kurz:'kennt fast jeder', satz:'das fast jeder kennt', n:3,
+    h:'Große Marke aus Nachrichten oder Werbung. Zum Beispiel Deutsche Bank, Allianz, Bosch, Mercedes-Benz, Porsche.'},
+  regional:{l:'Bekannt in der Region oder Finanzwelt', zeile:'Region oder Finanzwelt', kurz:'bekannt in der Region', satz:'das man in der Region oder in der Finanzwelt kennt', n:2,
+    h:'Zum Beispiel Sparkassen, Volksbanken, LBBW, Börse Stuttgart oder größere Firmen aus der Gegend.'},
+  wenig:{l:'Eher unbekannt', zeile:'Eher unbekannt', kurz:'eher unbekannt', satz:'das eher unbekannt ist', n:1,
+    h:'Kleine Firma, Start-up oder ein Name, den du noch nie gehört hast.'}
+};
+const BEK_ORDER = ['sehr','regional','wenig'];
+const KENNT = [
+  {v:'kalt', l:'Noch nie Kontakt', k:'Noch kein Kontakt', h:'Wir haben noch nie mit der Person gesprochen oder geschrieben.'},
+  {v:'lauwarm', l:'Hatten schon Kontakt', k:'Hatten Kontakt', h:'Hat schon mal geantwortet oder wir haben uns kurz kennengelernt.'},
+  {v:'warm', l:'Kennt uns gut', k:'Kennt uns gut', h:'War schon zu Gast, hat uns geholfen oder setzt sich für uns ein.'}];
+const HFWU = [
+  {v:'Keine', l:'Nein', h:'Kein Bezug zur Hochschule bekannt.'},
+  {v:'Absolvent oder Ehemalige', l:'Ja, war selbst an der HfWU', h:'Hat hier studiert oder war im Verein.'},
+  {v:'Anderer Bezug', l:'Ja, anderer Bezug', h:'Unterrichtet hier, kam über eine Empfehlung oder kennt jemanden aus dem Team.'}];
+const MATRIX = {
+  sehr:{chef:'A', fuehrung:'A', mitarbeiter:'B'},
+  regional:{chef:'A', fuehrung:'B', mitarbeiter:'C'},
+  wenig:{chef:'B', fuehrung:'C', mitarbeiter:'C'}};
+const UP = {C:'B', B:'A', A:'A'};
+const KL = {
+  A:{n:'Top', lang:'Top-Kontakt', viele:'Top-Kontakte', u:'Zuerst um diese Kontakte kümmern. Persönlich anschreiben, die Vorlage „Top-Kontakt“ ist nur ein Gerüst. Vorher kurz im Team Bescheid geben. Höchstens einmal nachfassen, nach 14 Tagen.'},
+  B:{n:'Wichtig', lang:'Wichtiger Kontakt', viele:'Wichtige Kontakte', u:'Mit passender Vorlage anschreiben und persönlich anpassen. Nach 7 Tagen nachfassen.'},
+  C:{n:'Normal', lang:'Normaler Kontakt', viele:'Normale Kontakte', u:'Mit Vorlage anschreiben. Nach 7 Tagen einmal nachfassen, dann ruhen lassen.'}};
+/* Titel-Übersetzer: Reihenfolge zählt, Ausnahmen stehen oben. */
+const TITEL = [
+  [/assist|vorzimmer|sekretär/, 'mitarbeiter', 'Assistenz', 'Entscheidet nicht selbst, kann uns aber zur Chefetage durchstellen.'],
+  [/business partner/, 'mitarbeiter', 'HR Business Partner', 'Ein Fachtitel im Personalbereich, kein Mitinhaber.'],
+  [/werkstudent|praktikant|\bintern\b|trainee|azubi|auszubild/, 'mitarbeiter', 'Einstieg', 'Steht am Anfang der Laufbahn. Gut als Tippgeber.'],
+  [/vice president|\bs?vp\b/, 'fuehrung', 'Vice President', 'Klingt nach Chefetage, ist in vielen Banken aber eine mittlere Führungsstufe.'],
+  [/executive director/, 'fuehrung', 'Executive Director', 'In Banken eine hohe Führungsstufe, aber nicht die Chefetage.'],
+  [/managing director/, 'chef', 'Managing Director', 'In deutschen Firmen der Geschäftsführer, in Banken eine der höchsten Stufen.'],
+  [/vorstand|vorständin|\bboard\b|aufsichtsrat/, 'chef', 'Vorstand', 'Oberste Leitung des Unternehmens. Board Member heißt Vorstandsmitglied.'],
+  [/geschäftsführ|geschäftsleitung|general manager/, 'chef', 'Geschäftsführung', 'Leitet das ganze Unternehmen.'],
+  [/\bc[a-z]{1,2}o\b|chief/, 'chef', 'C-Level', 'Steht für „Chief … Officer“. CEO ist der Chef, CFO der Finanzchef.'],
+  [/inhaber|gründer|founder|eigentümer/, 'chef', 'Inhaber', 'Dem gehört das Unternehmen (mit). Entscheidet selbst.'],
+  [/\bpartner(in)?\b/, 'chef', 'Partner', 'In Beratungen, Kanzleien und Beteiligungsfirmen ein Mitinhaber.'],
+  [/präsident|president|generalbevollm/, 'chef', 'Präsident', 'Höchste Leitungsebene.'],
+  [/head of/, 'fuehrung', 'Head of', 'Heißt Leiter oder Leiterin eines Bereichs.'],
+  [/leiter|leitung/, 'fuehrung', 'Leitung', 'Leitet einen Bereich, eine Abteilung oder ein Team.'],
+  [/director|direktor/, 'fuehrung', 'Director', 'Führungskraft mit eigenem Bereich.'],
+  [/prokurist/, 'fuehrung', 'Prokurist', 'Darf für das Unternehmen unterschreiben. Meist eine erfahrene Führungskraft.'],
+  [/principal|senior manager/, 'fuehrung', 'Senior Manager', 'Erfahrene Führungskraft in Beratung oder Bank, leitet Projekte und Teams.'],
+  [/\blead\b|teamlead/, 'fuehrung', 'Lead', 'Leitet ein Team.'],
+  [/recruit|talent|employer branding|personal|\bhr\b|human resources|people/, 'mitarbeiter', 'Personalbereich', 'Arbeitet im Personalbereich. Oft der beste Einstieg für eine Exkursion.'],
+  [/analyst|associate/, 'mitarbeiter', 'Analyst', 'Einstiegs- oder mittlere Stufe in Banken und Beratungen.'],
+  [/manager/, 'mitarbeiter', 'Manager', 'Im Englischen oft ein Fachtitel ohne Führung. Leitet die Person ein Team, wähle Führungskraft.'],
+  [/referent|sachbearbeit|berater|consultant|special|spezialist|expert|betreuer|mitarbeiter|junior|senior|trader|händler|entwickler|developer|engineer|ingenieur|controller|relations|sprecher|presse|marketing|kommunikation|vertrieb|sales/, 'mitarbeiter', 'Fachkraft', 'Fachkraft ohne Führungsaufgabe.']
+];
+function erkenneTitel(t){
+  const s = String(t || '').toLowerCase().trim();
+  if (!s) return null;
+  for (const r of TITEL) if (r[0].test(s)) return {s:r[1], t:r[2], e:r[3]};
+  return null;
+}
+
+/* Nähe zur HfWU: je näher, desto wichtiger. Nah = eine Stufe höher, weit = eine Stufe niedriger. */
+const NAEHE = {
+  nah:{l:'Nah dran', kurz:'nah dran', d:1, h:'Bis etwa 50 km, rund 45 Minuten. Zum Beispiel Stuttgart, Esslingen, Reutlingen, Tübingen, Böblingen, Ludwigsburg, Göppingen, Geislingen.'},
+  mittel:{l:'Mittlere Entfernung', kurz:'mittlere Entfernung', d:0, h:'Etwa 50 bis 150 km. Zum Beispiel Ulm, Heilbronn, Pforzheim, Karlsruhe, Heidelberg, Mannheim, Freiburg, Konstanz.'},
+  weit:{l:'Weit weg', kurz:'weit weg', d:-1, h:'Mehr als 150 km. Zum Beispiel Frankfurt, München, Nürnberg, Berlin, Hamburg oder Ausland.'}
+};
+const NAEHE_ORDER = ['nah','mittel','weit'];
+const HFWU_POS = [48.627, 9.342];
+const ORTE = [
+  ['Nürtingen',48.627,9.342],['Stuttgart',48.776,9.183],['Esslingen am Neckar',48.742,9.307,'esslingen'],['Reutlingen',48.491,9.204],['Tübingen',48.521,9.057],
+  ['Böblingen',48.684,9.012],['Sindelfingen',48.709,9.003],['Ludwigsburg',48.897,9.192],['Göppingen',48.703,9.652],['Geislingen an der Steige',48.624,9.830,'geislingen'],
+  ['Kirchheim unter Teck',48.648,9.451,'kirchheim'],['Metzingen',48.537,9.284],['Filderstadt',48.664,9.218],['Leinfelden-Echterdingen',48.693,9.142,'leinfelden|echterdingen'],
+  ['Waiblingen',48.830,9.317],['Fellbach',48.810,9.276],['Schorndorf',48.805,9.527],['Backnang',48.946,9.432],['Herrenberg',48.596,8.870],['Leonberg',48.800,9.015],
+  ['Ditzingen',48.827,9.067],['Gerlingen',48.799,9.063],['Ostfildern',48.725,9.262],['Plochingen',48.712,9.419],['Wendlingen',48.672,9.380],
+  ['Bietigheim-Bissingen',48.948,9.132,'bietigheim'],['Kornwestheim',48.861,9.185],['Rottenburg am Neckar',48.477,8.934,'rottenburg'],['Bad Urach',48.493,9.399,'urach'],
+  ['Schwäbisch Gmünd',48.799,9.798],['Aalen',48.837,10.093],['Heidenheim an der Brenz',48.676,10.152,'heidenheim'],['Ulm',48.401,9.988],['Neu-Ulm',48.392,10.011],
+  ['Biberach an der Riß',48.098,9.788,'biberach'],['Heilbronn',49.142,9.219],['Neckarsulm',49.192,9.224],['Pforzheim',48.892,8.694],['Karlsruhe',49.007,8.404],
+  ['Baden-Baden',48.761,8.240],['Heidelberg',49.398,8.672],['Mannheim',49.487,8.466],['Walldorf',49.306,8.642],['Freiburg im Breisgau',47.999,7.842,'freiburg'],
+  ['Konstanz',47.660,9.175],['Friedrichshafen',47.654,9.479],['Ravensburg',47.782,9.612],['Sigmaringen',48.087,9.217],['Albstadt',48.212,9.024],['Balingen',48.275,8.856],
+  ['Villingen-Schwenningen',48.062,8.494,'villingen|schwenningen'],['Offenburg',48.473,7.944],['Künzelsau',49.282,9.690],['Schwäbisch Hall',49.112,9.737],['Crailsheim',49.134,10.071],
+  ['Augsburg',48.371,10.898],['München',48.137,11.576,'munich'],['Nürnberg',49.452,11.077],['Würzburg',49.792,9.953],['Frankfurt am Main',50.110,8.682,'frankfurt'],
+  ['Wiesbaden',50.078,8.240],['Mainz',49.993,8.247],['Darmstadt',49.872,8.651],['Köln',50.938,6.960,'cologne'],['Düsseldorf',51.227,6.773],['Bonn',50.737,7.098],
+  ['Essen',51.456,7.012],['Dortmund',51.514,7.468],['Hannover',52.376,9.732],['Hamburg',53.551,9.994],['Berlin',52.520,13.405],['Leipzig',51.340,12.375],
+  ['Dresden',51.050,13.738],['Bremen',53.079,8.802],['Saarbrücken',49.240,6.997],['Zürich',47.377,8.541,'zurich'],['Basel',47.560,7.589],['Luxemburg',49.612,6.130,'luxembourg'],
+  ['Wien',48.208,16.373,'vienna'],['London',51.507,-0.128],['Paris',48.857,2.352],['Amsterdam',52.370,4.895],['New York',40.713,-74.006]];
+const normOrt = s => String(s || '').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/\s+/g,' ').trim();
+function luftlinie(a, b, c, d){ const R = 6371, t = Math.PI / 180, x = (c - a) * t, y = (d - b) * t; const h = Math.sin(x/2) ** 2 + Math.cos(a*t) * Math.cos(c*t) * Math.sin(y/2) ** 2; return Math.round(2 * R * Math.asin(Math.sqrt(h))); }
+const naeheAusKm = km => km <= 50 ? 'nah' : km <= 150 ? 'mittel' : 'weit';
+function erkenneOrt(s){
+  const n = normOrt(s); if (!n) return null;
+  let best = null, bl = 0;
+  for (const o of ORTE){ const al = [normOrt(o[0])].concat(o[3] ? o[3].split('|') : []); for (const a of al){ if (a.length > bl && n.includes(a)){ best = o; bl = a.length; } } }
+  if (!best) return null;
+  const km = luftlinie(HFWU_POS[0], HFWU_POS[1], best[1], best[2]);
+  return {name:best[0], km:km, n:naeheAusKm(km)};
+}
+function naeheOf(f){
+  if (!f) return '';
+  if (NAEHE[f.naehe]) return f.naehe;
+  const o = erkenneOrt(f.standort); if (o) return o.n;
+  const km = Number(f.entfernung); if (km > 0) return naeheAusKm(km);
+  return '';
+}
+function naeheText(f){
+  const nz = naeheOf(f); if (!nz) return 'Entfernung fehlt';
+  const o = erkenneOrt(f.standort), km = Number(f.entfernung) > 0 ? Number(f.entfernung) : (o ? o.km : 0);
+  return NAEHE[nz].l + (km ? ' · ca. ' + km + ' km' : '');
+}
+
+/* ---------- Weitere feste Werte ---------- */
+const ROLLEN = [
+  {v:'Entscheider', l:'Entscheider: sagt am Ende ja oder nein'},
+  {v:'Türöffner', l:'Türöffner: stellt uns anderen vor'},
+  {v:'Organisator', l:'Organisator: plant den Termin, oft HR'},
+  {v:'Redner', l:'Redner: hält den Vortrag'},
+  {v:'Vorzimmer', l:'Vorzimmer: Assistenz, leitet weiter'}];
+const BRANCHEN = ['Bank, Sparkasse oder Volksbank','Börse','Versicherung','Vermögensverwaltung oder Fonds','Beratung oder Wirtschaftsprüfung','Fintech oder Start-up','Industrie oder Autobau','Sonstiges'];
+const STAND = ['Kein Kontakt','Angesprochen','Im Gespräch','Aktiver Partner','Ehemaliger Partner','Kein Interesse'];
+const FORMATE = ['Exkursion (Unternehmensbesuch)','Vortrag / Keynote','Workshop','Podiumsdiskussion','Kaminabend','Sponsoring','Sonstiges'];
+const STUFEN = [
+  {v:'recherche',l:'Recherche'},{v:'erstkontakt',l:'Erstkontakt gesendet'},{v:'nachgefasst',l:'Nachgefasst'},
+  {v:'gespraech',l:'Im Gespräch'},{v:'zugesagt',l:'Zugesagt'},{v:'planung',l:'In Planung'},
+  {v:'durchgefuehrt',l:'Durchgeführt'},{v:'nachbereitet',l:'Nachbereitet'}];
+const STUFEN_AUS = [{v:'spaeter',l:'Später wieder'},{v:'abgesagt',l:'Abgesagt'}];
+const ALLE_STUFEN = STUFEN.concat(STUFEN_AUS);
+const ARTEN = ['E-Mail','LinkedIn','Anruf','Treffen','Veranstaltung','Sonstiges'];
+const PFLEGE = {A:90,B:180,C:365};
+const NACHFASSEN = {A:14,B:7,C:7};
+const COLS = ['firmen','kontakte','anfragen','verlauf','vorlagen','team'];
+const XLSX_URL = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+const FB_URL = 'https://www.gstatic.com/firebasejs/12.6.0/';
+
+/* ---------- Zustand ---------- */
+const S = {
+  data:{firmen:{},kontakte:{},anfragen:{},verlauf:{},vorlagen:{},team:{}},
+  loaded:new Set(), db:null, dbState:'connecting', canWrite:true, canWriteKnown:false,
+  me: lsGet('ep-crm-ich') || '',
+  letzter:{}, firmaLetzter:{},
+  ui:{q:'',klasse:'alle',owner:'alle',fq:'',naehe:'alle',semester:'aktuell',format:'alle',nurMeine:false,titel:'',ort:''}
+};
+
+/* ---------- Hilfen ---------- */
+const $ = (s, r) => (r || document).querySelector(s);
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+function uid(p){ return p + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+const pad = n => String(n).padStart(2,'0');
+function fmtISO(d){ return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()); }
+function todayStr(){ return fmtISO(new Date()); }
+function isDate(s){ return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s); }
+function parseD(s){ const a = s.split('-').map(Number); return new Date(a[0], a[1]-1, a[2]); }
+function addDays(s, n){ const d = parseD(s); d.setDate(d.getDate() + n); return fmtISO(d); }
+function daysBetween(a, b){ return Math.round((parseD(b) - parseD(a)) / 86400000); }
+function fmtDE(s){ if (!isDate(s)) return ''; const a = s.split('-'); return a[2] + '.' + a[1] + '.' + a[0]; }
+function dateOf(iso){ return typeof iso === 'string' && iso.length >= 10 ? iso.slice(0,10) : ''; }
+function semesterOf(s){
+  if (!isDate(s)) return '';
+  const d = parseD(s), y = d.getFullYear(), m = d.getMonth() + 1, yy = n => String(n).slice(2);
+  if (m >= 10) return 'WS ' + yy(y) + '/' + yy(y+1);
+  if (m <= 3) return 'WS ' + yy(y-1) + '/' + yy(y);
+  return 'SoSe ' + yy(y);
+}
+function semesterList(){
+  const t = parseD(todayStr()), out = [];
+  for (let off = -12; off <= 24; off += 6){
+    const s = semesterOf(fmtISO(new Date(t.getFullYear(), t.getMonth() + off, 15)));
+    if (!out.includes(s)) out.push(s);
+  }
+  return out;
+}
+function sinceTxt(d){
+  if (!isDate(d)) return '';
+  const n = daysBetween(d, todayStr());
+  if (n <= 0) return 'heute';
+  if (n === 1) return 'gestern';
+  if (n < 60) return 'vor ' + n + ' Tagen';
+  if (n < 730) return 'vor ' + Math.round(n/30) + ' Monaten';
+  return 'vor ' + Math.round(n/365) + ' Jahren';
+}
+function dueInfo(d){
+  if (!isDate(d)) return null;
+  const n = daysBetween(todayStr(), d);
+  if (n < 0) return {cls:'over', txt: n === -1 ? 'seit gestern fällig' : 'seit ' + (-n) + ' Tagen fällig'};
+  if (n === 0) return {cls:'today', txt:'heute fällig'};
+  if (n === 1) return {cls:'soon', txt:'morgen'};
+  if (n <= 7) return {cls:'soon', txt:'in ' + n + ' Tagen'};
+  return {cls:'later', txt: fmtDE(d)};
+}
+function duePill(d){ const i = dueInfo(d); return i ? '<span class="due ' + i.cls + '">' + esc(i.txt) + '</span>' : ''; }
+function safeUrl(u){ return /^https?:\/\//i.test(u || '') ? u : ''; }
+const byName = (a,b) => String(a.name || '').localeCompare(String(b.name || ''), 'de');
+const find = (list, v) => list.find(x => x.v === v);
+const fmtKurz = f => String(f || '').split(' (')[0];
+const stufeLabel = v => { const x = find(ALLE_STUFEN, v); return x ? x.l : 'Recherche'; };
+const normKennt = v => v === 'fuersprecher' ? 'warm' : (find(KENNT, v) ? v : 'kalt');
+const normHfwu = v => !v || v === 'Keine' ? 'Keine' : find(HFWU, v) ? v : /absolvent|mitglied/i.test(v) ? 'Absolvent oder Ehemalige' : 'Anderer Bezug';
+
+function kName(k){ return k ? ([k.titel, k.vorname, k.nachname].filter(Boolean).join(' ') || 'Ohne Namen') : 'Gelöschter Kontakt'; }
+function fName(f){ return f ? (f.name || 'Ohne Namen') : 'Ohne Unternehmen'; }
+function tName(id){ const t = S.data.team[id]; return t ? t.name : ''; }
+function meId(){ return S.data.team[S.me] ? S.me : ''; }
+
+/* ---------- Wichtigkeit berechnen ---------- */
+function bekOf(f){ return f && BEK[f.bekanntheit] ? f.bekanntheit : ''; }
+function posOf(k){
+  if (POS[k.positionStufe]) return k.positionStufe;
+  const d = erkenneTitel(k.position);
+  if (d) return d.s;
+  const e = Number(k.ebene);
+  if (e === 1) return 'chef';
+  if (e >= 2 && e <= 4) return 'fuehrung';
+  if (e === 5) return 'mitarbeiter';
+  return '';
+}
+function wichtigkeit(k, firma){
+  const f = firma !== undefined ? firma : S.data.firmen[k.firmaId];
+  const bk = bekOf(f), st = posOf(k);
+  const basis = MATRIX[bk || 'regional'][st || 'mitarbeiter'];
+  const kennt = normKennt(k.erreichbarkeit) === 'warm';
+  const hfwu = !!k.verbindung && k.verbindung !== 'Keine';
+  const nz = naeheOf(f);
+  const ORD = ['C','B','A'];
+  const roh = ORD.indexOf(basis) + (nz ? NAEHE[nz].d : 0) + (kennt || hfwu ? 1 : 0);
+  const vorschlag = ORD[Math.max(0, Math.min(2, roh))];
+  const gekappt = roh > 2 ? 'oben' : roh < 0 ? 'unten' : '';
+  const fehlt = [];
+  if (!bk) fehlt.push('wie bekannt das Unternehmen ist');
+  if (!st) fehlt.push('wie hoch die Person sitzt');
+  if (!nz) fehlt.push('wo das Unternehmen sitzt');
+  return {bk:bk, st:st, nz:nz, basis:basis, kennt:kennt, hfwu:hfwu, vorschlag:vorschlag, gekappt:gekappt, kl: KL[k.klasseManuell] ? k.klasseManuell : vorschlag, manuell: !!KL[k.klasseManuell], fehlt:fehlt};
+}
+function kontaktKlasse(k){ return wichtigkeit(k).kl; }
+function warumSatz(w){
+  let s = (w.st ? POS[w.st].l : 'Unbekannte Stufe') + ' bei einem Unternehmen, ' + (w.bk ? BEK[w.bk].satz : 'dessen Bekanntheit noch fehlt') + '.';
+  if (w.nz === 'nah') s += ' Pluspunkt: Das Unternehmen liegt nah an der HfWU.';
+  if (w.nz === 'weit') s += ' Minuspunkt: Das Unternehmen liegt weit weg.';
+  if (w.kennt || w.hfwu) s += ' Pluspunkt: Die Person ' + [w.kennt && 'kennt uns schon gut', w.hfwu && 'hat einen Bezug zur HfWU'].filter(Boolean).join(' und ') + '.';
+  if (w.gekappt === 'oben') s += ' Höher als Top geht nicht.';
+  if (w.gekappt === 'unten') s += ' Niedriger als Normal geht nicht.';
+  return s;
+}
+function warumKurz(w){
+  return [w.st ? POS[w.st].l : 'Stufe fehlt', w.bk ? BEK[w.bk].kurz : 'Bekanntheit fehlt'].concat(w.nz ? [NAEHE[w.nz].kurz] : []).concat(w.kennt ? ['kennt uns gut'] : []).concat(w.hfwu ? ['HfWU-Bezug'] : []).join(' · ');
+}
+function rechenweg(w){
+  const step = (cls, t) => '<span class="rw-s ' + cls + '">' + t + '</span>';
+  let h = '<div class="rw" aria-label="Rechenweg"><span class="muted">Raster</span>' + badge(w.basis, 'sm');
+  if (w.nz === 'nah') h += step('up', '↑ nah dran');
+  if (w.nz === 'weit') h += step('down', '↓ weit weg');
+  if (w.kennt || w.hfwu) h += step('up', '↑ ' + (w.kennt ? 'kennt uns' : 'HfWU-Bezug'));
+  return h + '<span class="muted">=</span>' + badge(w.vorschlag, 'sm') + '</div>';
+}
+function beispiele(){
+  const ex = [
+    ['Recruiterin bei Bosch in Gerlingen', {bekanntheit:'sehr', standort:'Gerlingen'}, 'mitarbeiter'],
+    ['Abteilungsleiter bei der Kreissparkasse Esslingen-Nürtingen', {bekanntheit:'regional', standort:'Nürtingen'}, 'fuehrung'],
+    ['Vorstand einer bekannten Bank in Frankfurt', {bekanntheit:'sehr', standort:'Frankfurt'}, 'chef']];
+  return '<div class="eyebrow" style="margin:18px 0 4px">Drei Beispiele</div>' + ex.map(e => {
+    const w = wichtigkeit({positionStufe:e[2], erreichbarkeit:'kalt', verbindung:'Keine'}, e[1]);
+    return '<div class="bsp-r"><span>' + esc(e[0]) + '</span>' + rechenweg(w) + '</div>';
+  }).join('');
+}
+function badge(kl, size){ return '<span class="kl ' + kl + (size ? ' ' + size : '') + '">' + KL[kl].n + '</span>'; }
+function dots(bk){
+  const n = BEK[bk] ? BEK[bk].n : 0;
+  return '<span class="dots" title="' + esc(BEK[bk] ? BEK[bk].l : 'Bekanntheit fehlt') + '" aria-label="' + esc(BEK[bk] ? BEK[bk].l : 'Bekanntheit fehlt') + '">' + [1,2,3].map(i => '<i' + (i <= n ? ' class="on"' : '') + '></i>').join('') + '</span>';
+}
+function matrixHtml(hlBk, hlSt, big){
+  const cols = ['mitarbeiter','fuehrung','chef'];
+  return '<div class="tbl-wrap"><table class="mx' + (big ? ' big' : '') + '"><thead><tr><th></th>' + cols.map(c => '<th>' + POS[c].l + '</th>').join('') + '</tr></thead><tbody>' +
+    BEK_ORDER.map(b => '<tr><th>' + dots(b) + ' ' + esc(BEK[b].zeile) + '</th>' + cols.map(c => {
+      const kl = MATRIX[b][c];
+      return '<td' + (b === hlBk && c === hlSt ? ' class="hl" title="Hier steht diese Person"' : '') + '>' + badge(kl, big ? '' : 'sm') + '</td>';
+    }).join('') + '</tr>').join('') + '</tbody></table></div>';
+}
+function wichtigBox(w, k){
+  let h = '<div class="wbox">' + badge(w.kl, 'lg') + '<div><b>' + KL[w.kl].lang + '</b><p>' + esc(warumSatz(w)) + '</p></div></div>' + rechenweg(w);
+  if (w.manuell) h += '<p class="muted" style="font-size:13px;margin:10px 0 0">Von Hand auf „' + KL[w.kl].n + '“ gesetzt' + (k && k.klasseBegruendung ? ': ' + esc(k.klasseBegruendung) : '') + '. Der Vorschlag wäre „' + KL[w.vorschlag].n + '“.</p>';
+  if (w.fehlt.length) h += '<p style="font-size:13px;margin:10px 0 0;color:var(--warn)">Es fehlt noch, ' + esc(w.fehlt.join(' und ')) + '. Bis dahin rechnet das CRM mit der mittleren Stufe.</p>';
+  h += '<div class="umgang"><b>Was heißt das für dich?</b>' + esc(KL[w.kl].u) + '</div>';
+  return h;
+}
+
+function derive(){
+  const L = {}, FL = {};
+  for (const v of Object.values(S.data.verlauf)){
+    if (!isDate(v.datum)) continue;
+    if (v.kontaktId && (!L[v.kontaktId] || v.datum > L[v.kontaktId])) L[v.kontaktId] = v.datum;
+    const k = S.data.kontakte[v.kontaktId];
+    const fid = v.firmaId || (k && k.firmaId);
+    if (fid && (!FL[fid] || v.datum > FL[fid])) FL[fid] = v.datum;
+  }
+  S.letzter = L; S.firmaLetzter = FL;
+}
+function anfrageSemester(a){ return a.semester || semesterOf(a.termin) || semesterOf(a.wunschtermin) || ''; }
+
+/* ---------- Formular-Bausteine ---------- */
+function opts(list, val, empty){
+  let h = empty !== undefined ? '<option value="">' + esc(empty) + '</option>' : '';
+  const v0 = String(val == null ? '' : val);
+  let hit = false;
+  for (const o of list){
+    const v = typeof o === 'object' ? o.v : o, l = typeof o === 'object' ? o.l : o;
+    const on = String(v) === v0; if (on) hit = true;
+    h += '<option value="' + esc(v) + '"' + (on ? ' selected' : '') + '>' + esc(l) + '</option>';
+  }
+  if (v0 && !hit && empty !== undefined) h += '<option value="' + esc(v0) + '" selected>' + esc(v0) + '</option>';
+  return h;
+}
+function teamOpts(val, empty){ return opts(Object.values(S.data.team).sort(byName).map(t => ({v:t.id, l:t.name})), val, empty === undefined ? 'Niemand' : empty); }
+function F(label, id, inner, o){
+  o = o || {};
+  return '<div class="f' + (o.full ? ' full' : '') + '"><label for="' + id + '">' + esc(label) + '</label>' + inner + (o.hint ? '<div class="hint">' + o.hint + '</div>' : '') + '</div>';
+}
+function inp(id, name, val, attrs){ return '<input id="' + id + '" name="' + name + '" value="' + esc(val) + '"' + (attrs ? ' ' + attrs : '') + '>'; }
+function sel(id, name, inner, attrs){ return '<select id="' + id + '" name="' + name + '"' + (attrs ? ' ' + attrs : '') + '>' + inner + '</select>'; }
+function area(id, name, val, attrs){ return '<textarea id="' + id + '" name="' + name + '"' + (attrs ? ' ' + attrs : '') + '>' + esc(val) + '</textarea>'; }
+function radios(name, list, val, required){
+  return '<div class="choices">' + list.map((o, i) => '<label class="choice"><input type="radio" name="' + name + '" value="' + esc(o.v) + '"' + (String(o.v) === String(val) ? ' checked' : '') + (required && i === 0 ? ' required' : '') + '><span><b>' + esc(o.l) + '</b>' + (o.h ? '<small>' + esc(o.h) + '</small>' : '') + '</span></label>').join('') + '</div>';
+}
+function group(legend, inner, hint){ return '<fieldset class="f full"><legend>' + esc(legend) + '</legend>' + (hint ? '<div class="hint" style="margin:-2px 0 8px">' + hint + '</div>' : '') + inner + '</fieldset>'; }
+function readForm(form){
+  const o = {};
+  for (const el of form.elements){
+    if (!el.name || el.disabled) continue;
+    if (el.type === 'radio'){ if (el.checked) o[el.name] = el.value; else if (o[el.name] === undefined) o[el.name] = ''; continue; }
+    o[el.name] = el.type === 'checkbox' ? el.checked : String(el.value).trim();
+  }
+  return o;
+}
+
+/* ---------- Dialog und Meldungen ---------- */
+let toastTimer = null;
+function toast(msg, kind){
+  const t = $('#toast'); t.textContent = msg; t.className = 'toast' + (kind === 'err' ? ' err' : ''); t.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, kind === 'err' ? 6000 : 3200);
+}
+function closeModal(){ $('#modal-root').innerHTML = ''; document.body.classList.remove('modal-open'); }
+function openModal(title, body, o){
+  o = o || {};
+  closeModal();
+  const root = document.createElement('div');
+  root.className = 'mb';
+  root.innerHTML = '<form class="md' + (o.narrow ? ' narrow' : '') + '" autocomplete="off"><div class="md-h"><h2>' + esc(title) + '</h2><button type="button" class="btn ghost sm" data-close>Schließen</button></div>' +
+    '<div class="md-b">' + body + '</div><div class="md-f">' + (o.left || '') +
+    '<button type="button" class="btn" data-close>' + (o.onSubmit ? 'Abbrechen' : 'Schließen') + '</button>' +
+    (o.onSubmit ? '<button type="submit" class="btn ' + (o.danger ? 'danger' : 'pri') + '">' + esc(o.submit || 'Speichern') + '</button>' : '') + '</div></form>';
+  $('#modal-root').appendChild(root);
+  document.body.classList.add('modal-open');
+  root.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeModal(); });
+  const form = root.querySelector('form');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!o.onSubmit) return;
+    const btn = form.querySelector('[type=submit]');
+    btn.disabled = true;
+    try { await o.onSubmit(readForm(form), form); closeModal(); }
+    catch(err){ console.error(err); btn.disabled = false; }
+  });
+  if (o.onOpen) o.onOpen(root);
+  const first = root.querySelector('.md-b input:not([type=checkbox]):not([type=radio]), .md-b select, .md-b textarea');
+  if (first && !o.noFocus) first.focus();
+  return root;
+}
+function openConfirm(title, text, label, fn){
+  openModal(title, '<p>' + text + '</p>', {narrow:true, danger:true, submit:label, onSubmit: fn});
+}
+function openInfo(title, text, extra){
+  openModal(title, '<p>' + text + '</p>' + (extra || ''), {narrow:true});
+}
+
+/* ---------- Datenbank ---------- */
+async function put(col, obj){
+  if (!S.db){ toast('Keine Verbindung zur Datenbank. Lade die Seite neu und melde dich an.', 'err'); throw new Error('nodb'); }
+  const id = obj.id || uid(col.slice(0,1));
+  const body = {};
+  for (const k of Object.keys(obj)){ if (k !== 'id' && obj[k] !== undefined) body[k] = obj[k]; }
+  const now = new Date().toISOString();
+  body.geaendert = now;
+  if (!body.erstellt) body.erstellt = now;
+  try { await S.db.collection(col).doc(id).set(body); return id; }
+  catch(e){ writeErr(e); throw e; }
+}
+async function del(col, id){
+  if (!S.db){ toast('Keine Verbindung zur Datenbank.', 'err'); throw new Error('nodb'); }
+  try { await S.db.collection(col).doc(id).delete(); }
+  catch(e){ writeErr(e); throw e; }
+}
+function writeErr(e){
+  const c = e && e.code;
+  if (c === 'invalid_argument' && !S.canWriteKnown){ S.canWrite = false; S.canWriteKnown = true; scheduleRender(); toast('Speichern nicht möglich: Du hast nur Lesezugriff.', 'err'); return; }
+  if (c === 'permission-denied'){ toast('Speichern nicht erlaubt. Stehst du noch auf der Freigabeliste?', 'err'); return; }
+  if (c === 'resource-exhausted'){ toast('Das kostenlose Tageslimit von Firebase ist erreicht. Morgen geht es wieder.', 'err'); return; }
+  if (c === 'quota_exceeded'){ toast('Die Datenbank ist voll. Lösche alte Einträge im Verlauf, dann klappt es wieder.', 'err'); return; }
+  if (c === 'unavailable'){ toast('Kurz keine Verbindung. Bitte noch einmal speichern.', 'err'); return; }
+  toast('Speichern hat nicht geklappt' + (e && e.message ? ': ' + e.message : '.'), 'err');
+}
+/* ---------- Firebase: Anmeldung, Freigabeliste und Datenbank ----------
+   Ablauf: Einstellungen prüfen → Firebase laden → angemeldet? → E-Mail bestätigt? → auf der Freigabeliste? → Daten laden.
+   Die Freigabeliste liegt in der Sammlung „zugang“. Dokument-ID = E-Mail-Adresse in Kleinbuchstaben, Feld rolle = verwalter oder mitglied. */
+const AUTH = {fb:null, auth:null, db:null, user:null, rolle:'', zugang:{}, unsubs:[], gate:'laden', gateMsg:'', modus:'anmelden', info:'', lastMail:'', busy:false, run:0};
+const meineMail = () => AUTH.user ? String(AUTH.user.email || '').toLowerCase() : '';
+
+async function loadFirebase(){
+  if (window.EP_FIREBASE_MOCK) return window.EP_FIREBASE_MOCK; /* nur für lokale Tests */
+  const m = await Promise.all([import(FB_URL + 'firebase-app.js'), import(FB_URL + 'firebase-auth.js'), import(FB_URL + 'firebase-firestore.js')]);
+  return Object.assign({}, m[0], m[1], m[2]);
+}
+/* Offline wartet Firebase mit dem Bestätigen, bis wieder Netz da ist. Dann nicht blockieren, sondern im Hintergrund übertragen. */
+function settle(p){
+  if (navigator.onLine !== false) return p;
+  p.catch(writeErr);
+  toast('Du bist offline. Die Änderung wird übertragen, sobald du wieder Netz hast.');
+  return Promise.resolve();
+}
+/* Gleiche Schnittstelle wie vorher: db.collection(name).doc(id).set(...) / .delete() / collection(name).onSnapshot(...) */
+function adapter(fb, db){
+  return {collection: name => ({
+    doc: id => ({
+      set: body => settle(fb.setDoc(fb.doc(db, name, id), body)),
+      delete: () => settle(fb.deleteDoc(fb.doc(db, name, id)))
+    }),
+    onSnapshot: (ok, err) => fb.onSnapshot(fb.collection(db, name), ok, err)
+  })};
+}
+
+async function connect(){
+  const cfg = window.EP_FIREBASE_CONFIG;
+  if (!cfg || !cfg.apiKey || /EINTRAGEN/.test(cfg.apiKey) || !cfg.projectId){ showGate('setup'); return; }
+  let fb;
+  try { fb = await loadFirebase(); }
+  catch(e){ console.error(e); showGate('fehler', 'Firebase konnte nicht geladen werden. Prüfe die Internetverbindung und lade die Seite neu.'); return; }
+  AUTH.fb = fb;
+  try {
+    const app = fb.initializeApp(cfg);
+    AUTH.auth = fb.getAuth(app);
+    AUTH.auth.languageCode = 'de';
+    AUTH.db = fb.initializeFirestore(app, {ignoreUndefinedProperties:true});
+  } catch(e){ console.error(e); showGate('fehler', 'Die Einstellungen in firebase-config.js stimmen nicht. ' + (e && e.message ? e.message : '')); return; }
+  fb.onAuthStateChanged(AUTH.auth, u => { AUTH.user = u; pruefeZugang(); });
+}
+
+async function pruefeZugang(){
+  const run = ++AUTH.run;
+  stopDaten();
+  let u = AUTH.user;
+  if (!u){ showGate('anmelden'); return; }
+  if (!u.emailVerified){
+    try { await u.reload(); } catch(e){}
+    if (run !== AUTH.run) return;
+    u = AUTH.auth.currentUser || u; AUTH.user = u;
+    if (!u.emailVerified){ showGate('bestaetigen'); return; }
+  }
+  showGate('pruefen');
+  try {
+    /* Die Zugriffsregeln prüfen die Bestätigung im Anmelde-Ausweis. Ist der noch von vor der Bestätigung, frisch holen. */
+    const tok = await u.getIdTokenResult();
+    if (!tok.claims.email_verified) await u.getIdToken(true);
+    const snap = await AUTH.fb.getDoc(AUTH.fb.doc(AUTH.db, 'zugang', meineMail()));
+    if (run !== AUTH.run) return;
+    if (!snap.exists()){ showGate('warten'); return; }
+    AUTH.rolle = (snap.data() || {}).rolle === 'verwalter' ? 'verwalter' : 'mitglied';
+  } catch(e){
+    if (run !== AUTH.run) return;
+    console.error(e);
+    if (e && e.code === 'permission-denied'){ showGate('warten'); return; }
+    showGate('fehler', 'Die Freigabe konnte nicht geprüft werden. ' + (e && e.message ? e.message : ''));
+    return;
+  }
+  startDaten(run);
+}
+
+function startDaten(run){
+  hideGate();
+  const db = adapter(AUTH.fb, AUTH.db);
+  S.db = db; S.canWrite = true; S.canWriteKnown = true; S.dbState = 'connecting'; S.loaded = new Set();
+  const slow = setTimeout(() => { if (S.dbState === 'connecting'){ S.dbState = 'slow'; scheduleRender(); } }, 10000);
+  const fehler = err => {
+    clearTimeout(slow);
+    if (run !== AUTH.run) return;
+    console.error(err);
+    if (err && err.code === 'permission-denied'){ pruefeZugang(); return; }
+    S.dbState = 'error'; scheduleRender();
+  };
+  for (const c of COLS){
+    AUTH.unsubs.push(db.collection(c).onSnapshot(snap => {
+      const o = {};
+      for (const d of snap.docs){ const v = d.data(); if (v) o[d.id] = Object.assign({}, v, {id:d.id}); }
+      S.data[c] = o;
+      if (!snap.metadata.fromCache) S.loaded.add(c);
+      if (S.loaded.size === COLS.length){ clearTimeout(slow); S.dbState = 'ok'; }
+      scheduleRender();
+    }, fehler));
+  }
+  AUTH.unsubs.push(db.collection('zugang').onSnapshot(snap => {
+    const o = {};
+    for (const d of snap.docs) o[d.id] = Object.assign({}, d.data(), {id:d.id});
+    AUTH.zugang = o;
+    const ich = o[meineMail()];
+    if (!ich){ pruefeZugang(); return; }
+    AUTH.rolle = ich.rolle === 'verwalter' ? 'verwalter' : 'mitglied';
+    scheduleRender();
+  }, fehler));
+  render();
+}
+
+function stopDaten(){
+  for (const u of AUTH.unsubs){ try { u(); } catch(e){} }
+  AUTH.unsubs = []; AUTH.zugang = {}; AUTH.rolle = '';
+  S.db = null; S.loaded = new Set(); S.dbState = 'connecting';
+  S.data = {firmen:{},kontakte:{},anfragen:{},verlauf:{},vorlagen:{},team:{}};
+}
+
+async function abmelden(){
+  closeModal();
+  AUTH.modus = 'anmelden'; AUTH.info = '';
+  if (location.hash && location.hash !== '#start') history.replaceState(null, '', '#start');
+  try { if (AUTH.fb && AUTH.auth) await AUTH.fb.signOut(AUTH.auth); } catch(e){}
+}
+
+/* ---------- Anmeldeseite ---------- */
+function showGate(state, msg){
+  AUTH.gate = state; AUTH.gateMsg = msg || '';
+  if (state !== 'anmelden') AUTH.info = '';
+  document.body.classList.add('gated');
+  renderGate();
+}
+function hideGate(){
+  AUTH.gate = '';
+  document.body.classList.remove('gated');
+  const g = $('#gate'); g.innerHTML = '';
+}
+function gateHead(eyebrow, title){ return '<div class="eyebrow">' + esc(eyebrow) + '</div><h1>' + esc(title) + '</h1>'; }
+function loginForm(){
+  const m = AUTH.modus;
+  const t = m === 'registrieren' ? ['Neu im Team', 'Konto erstellen'] : m === 'vergessen' ? ['Passwort vergessen', 'Neues Passwort festlegen'] : ['Corporate Relations', 'Anmelden'];
+  let h = gateHead(t[0], t[1]);
+  if (m === 'anmelden') h += '<p class="muted">Das CRM des Effekten Parkett. Zugang nur für das Corporate Relations Team.</p>';
+  if (m === 'registrieren') h += '<p class="muted">Nimm die Adresse, die im CRM freigeschaltet wurde. Danach bekommst du eine E-Mail zum Bestätigen.</p>';
+  if (m === 'vergessen') h += '<p class="muted">Gib deine E-Mail-Adresse ein. Du bekommst einen Link, mit dem du ein neues Passwort festlegst.</p>';
+  h += '<form id="login" class="gform">';
+  h += F('E-Mail', 'g-mail', '<input id="g-mail" name="mail" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" required value="' + esc(AUTH.lastMail) + '">');
+  if (m !== 'vergessen') h += F('Passwort', 'g-pw', '<input id="g-pw" name="pw" type="password" minlength="6" required autocomplete="' + (m === 'registrieren' ? 'new-password' : 'current-password') + '">', m === 'registrieren' ? {hint:'Mindestens 6 Zeichen.'} : null);
+  if (m === 'registrieren') h += F('Passwort wiederholen', 'g-pw2', '<input id="g-pw2" name="pw2" type="password" minlength="6" required autocomplete="new-password">');
+  h += '<div class="gerr" id="g-err" role="alert"></div>';
+  h += '<button type="submit" class="btn pri wide">' + (m === 'registrieren' ? 'Konto erstellen' : m === 'vergessen' ? 'Link senden' : 'Anmelden') + '</button></form>';
+  h += '<div class="sw">' + (m === 'anmelden'
+    ? '<button type="button" class="linkbtn" data-act="modus" data-m="registrieren">Neu hier? Konto erstellen</button><button type="button" class="linkbtn" data-act="modus" data-m="vergessen">Passwort vergessen?</button>'
+    : '<button type="button" class="linkbtn" data-act="modus" data-m="anmelden">Zurück zur Anmeldung</button>') + '</div>';
+  return h;
+}
+function renderGate(){
+  const g = $('#gate'), st = AUTH.gate, mail = esc(AUTH.user ? AUTH.user.email || '' : '');
+  let h = '';
+  if (st === 'laden' || st === 'pruefen') h = gateHead('Corporate Relations', st === 'laden' ? 'CRM wird geladen' : 'Zugang wird geprüft') + '<p class="muted">Einen Moment bitte.</p>';
+  else if (st === 'setup') h = gateHead('Einrichtung', 'Firebase fehlt noch') +
+    '<p>Dieses CRM speichert seine Daten in Firebase. Trage die Verbindungsdaten deines Firebase-Projekts in die Datei <code>firebase-config.js</code> ein und lade die Seite neu.</p>' +
+    '<p class="muted">Wie das geht, steht Schritt für Schritt in der Anleitung (README.md) im Projektordner.</p>';
+  else if (st === 'fehler') h = gateHead('Fehler', 'Das hat nicht geklappt') + '<p>' + esc(AUTH.gateMsg) + '</p><div class="actions"><button type="button" class="btn pri" data-act="neuLaden">Neu laden</button></div>';
+  else if (st === 'anmelden') h = loginForm();
+  else if (st === 'bestaetigen') h = gateHead('Fast geschafft', 'Bestätige deine E-Mail') +
+    '<p>Wir haben dir eine E-Mail an <b>' + mail + '</b> geschickt. Klicke dort auf den Link und komm dann hierher zurück.</p>' +
+    '<p class="muted" style="font-size:13.5px">Nichts angekommen? Schau auch im Spam-Ordner nach. Absender ist noreply@…firebaseapp.com.</p>' +
+    '<div class="actions"><button type="button" class="btn pri" data-act="bestaetigt">Ich habe bestätigt</button><button type="button" class="btn" data-act="mailNochmal">E-Mail noch mal senden</button></div>' +
+    '<div class="sw"><button type="button" class="linkbtn" data-act="abmelden">Mit anderer Adresse anmelden</button></div>';
+  else if (st === 'warten') h = gateHead('Fast geschafft', 'Noch nicht freigeschaltet') +
+    '<p>Du bist als <b>' + mail + '</b> angemeldet, stehst aber noch nicht auf der Freigabeliste.</p>' +
+    '<p>Bitte jemanden aus dem Corporate Relations Team, deine Adresse im CRM unter <b>Team &amp; Daten</b> freizuschalten. Danach tippst du auf „Erneut prüfen“.</p>' +
+    '<div class="actions"><button type="button" class="btn pri" data-act="pruefen">Erneut prüfen</button><button type="button" class="btn" data-act="abmelden">Abmelden</button></div>';
+  g.innerHTML = '<section class="panel"><div class="panel-b">' + h + (AUTH.info ? '<div class="note gold" style="margin:16px 0 0">' + esc(AUTH.info) + '</div>' : '') + '</div></section>';
+  const first = AUTH.lastMail && g.querySelector('#g-pw') ? g.querySelector('#g-pw') : g.querySelector('#g-mail');
+  if (first && !('ontouchstart' in window)) first.focus();
+}
+function authFehler(e){
+  const c = e && e.code || '';
+  const M = {
+    'auth/invalid-credential':'E-Mail oder Passwort stimmt nicht.',
+    'auth/invalid-login-credentials':'E-Mail oder Passwort stimmt nicht.',
+    'auth/wrong-password':'E-Mail oder Passwort stimmt nicht.',
+    'auth/user-not-found':'E-Mail oder Passwort stimmt nicht.',
+    'auth/invalid-email':'Das ist keine gültige E-Mail-Adresse.',
+    'auth/missing-email':'Bitte gib deine E-Mail-Adresse ein.',
+    'auth/missing-password':'Bitte gib dein Passwort ein.',
+    'auth/email-already-in-use':'Für diese Adresse gibt es schon ein Konto. Melde dich einfach an.',
+    'auth/weak-password':'Das Passwort braucht mindestens 6 Zeichen.',
+    'auth/too-many-requests':'Zu viele Versuche. Warte ein paar Minuten und versuche es dann noch einmal.',
+    'auth/network-request-failed':'Keine Verbindung zum Internet.',
+    'auth/operation-not-allowed':'Die Anmeldung mit E-Mail und Passwort ist in Firebase noch nicht eingeschaltet.',
+    'auth/unauthorized-domain':'Diese Webadresse ist in Firebase noch nicht freigegeben. Trage sie unter Authentication, Einstellungen, Autorisierte Domains ein.',
+    'auth/unauthorized-continue-uri':'Diese Webadresse ist in Firebase noch nicht freigegeben. Trage sie unter Authentication, Einstellungen, Autorisierte Domains ein.',
+    'auth/user-disabled':'Dieses Konto wurde gesperrt.'
+  };
+  return M[c] || ('Das hat nicht geklappt' + (e && e.message ? ': ' + e.message : '.'));
+}
+async function loginSubmit(form){
+  if (AUTH.busy || !AUTH.fb) return;
+  const v = readForm(form), m = AUTH.modus, fb = AUTH.fb, err = $('#g-err');
+  const mail = String(v.mail || '').trim();
+  AUTH.lastMail = mail;
+  if (m === 'registrieren' && v.pw !== v.pw2){ err.textContent = 'Die beiden Passwörter sind nicht gleich.'; return; }
+  const btn = form.querySelector('[type=submit]');
+  btn.disabled = true; AUTH.busy = true; err.textContent = '';
+  try {
+    if (m === 'anmelden') await fb.signInWithEmailAndPassword(AUTH.auth, mail, v.pw);
+    else if (m === 'registrieren'){
+      AUTH.modus = 'anmelden';
+      const c = await fb.createUserWithEmailAndPassword(AUTH.auth, mail, v.pw);
+      await fb.sendEmailVerification(c.user);
+    } else {
+      await fb.sendPasswordResetEmail(AUTH.auth, mail);
+      AUTH.modus = 'anmelden';
+      AUTH.info = 'Falls es ein Konto mit dieser Adresse gibt, ist der Link unterwegs. Schau auch im Spam-Ordner nach.';
+      renderGate();
+    }
+  } catch(e){
+    if (m === 'registrieren' && !AUTH.user) AUTH.modus = 'registrieren';
+    const el = $('#g-err'); if (el) el.textContent = authFehler(e);
+    const b = $('#login [type=submit]'); if (b) b.disabled = false;
+  }
+  AUTH.busy = false;
+}
+
+/* ---------- Freigabeliste unter Team & Daten ---------- */
+function zugangPanel(){
+  const liste = Object.values(AUTH.zugang).sort((a, b) => a.id.localeCompare(b.id));
+  const ich = meineMail(), verw = AUTH.rolle === 'verwalter';
+  let h = '<section class="panel"><div class="panel-h"><h2>Zugang zum CRM · ' + liste.length + '</h2>' + (verw ? '<button type="button" class="btn sm pri" data-act="newZugang">Adresse freischalten</button>' : '') + '</div>';
+  h += '<div class="panel-b" style="padding-bottom:6px"><p style="margin:0;font-size:14px">Nur wer hier steht, kommt ins CRM. Neue Leute öffnen danach das CRM und erstellen sich mit genau dieser Adresse ein Konto. ' +
+    (verw ? 'Du bist in der Verwaltung und kannst Adressen freischalten und entfernen.' : 'Freischalten kann nur, wer in der Verwaltung ist.') + '</p></div>';
+  h += '<ul class="il zl">' + liste.map(z => '<li><div class="grow"><span class="t" style="overflow-wrap:anywhere">' + esc(z.id) + (z.id === ich ? ' <span class="chip">du</span>' : '') + '</span><div class="s">' +
+    (z.rolle === 'verwalter' ? 'Verwaltung' : 'Mitglied') + (z.name ? ' · ' + esc(z.name) : '') + '</div></div>' +
+    (verw && z.id !== ich ? '<div class="side" style="flex-direction:row;flex-wrap:wrap;justify-content:flex-end"><button type="button" class="btn ghost sm" data-act="rolleZugang" data-id="' + esc(z.id) + '">' + (z.rolle === 'verwalter' ? 'Zum Mitglied machen' : 'In die Verwaltung') + '</button><button type="button" class="btn ghost sm" data-act="delZugang" data-id="' + esc(z.id) + '">Entfernen</button></div>' : '') +
+    '</li>').join('') + '</ul>';
+  h += '<div class="panel-b acct-row"><span class="muted">Angemeldet als ' + esc(ich) + '</span><button type="button" class="btn sm" data-act="abmelden">Abmelden</button></div>';
+  return h + '</section>';
+}
+async function zugangSchreiben(mail, body){
+  const fb = AUTH.fb, ref = fb.doc(AUTH.db, 'zugang', mail);
+  try { await settle(body ? fb.setDoc(ref, body) : fb.deleteDoc(ref)); }
+  catch(e){ writeErr(e); throw e; }
+}
+function openZugangForm(){
+  openModal('Adresse freischalten', '<p style="margin-top:0">Die Person öffnet danach das CRM, tippt auf „Neu hier? Konto erstellen“ und nimmt genau diese Adresse.</p><div class="fg">' +
+    F('E-Mail-Adresse', 'm-zmail', '<input id="m-zmail" name="mail" type="email" required autocapitalize="off" spellcheck="false" placeholder="vorname.nachname@beispiel.de">', {full:true}) +
+    F('Name (freiwillig)', 'm-zname', inp('m-zname', 'name', '', 'placeholder="Damit alle wissen, wer das ist"'), {full:true}) +
+    group('Rolle', radios('rolle', [
+      {v:'mitglied', l:'Mitglied', h:'Kann alles im CRM sehen und bearbeiten.'},
+      {v:'verwalter', l:'Verwaltung', h:'Kann zusätzlich Leute freischalten und entfernen.'}], 'mitglied', true)) + '</div>', {
+    narrow:true, submit:'Freischalten',
+    async onSubmit(v){
+      const mail = String(v.mail || '').trim().toLowerCase();
+      if (!/^[^\s@\/]+@[^\s@\/]+\.[^\s@\/]+$/.test(mail)){ toast('Das ist keine gültige E-Mail-Adresse.', 'err'); throw new Error('mail'); }
+      if (AUTH.zugang[mail]){ toast(mail + ' ist schon freigeschaltet.', 'err'); throw new Error('doppelt'); }
+      await zugangSchreiben(mail, {rolle: v.rolle === 'verwalter' ? 'verwalter' : 'mitglied', name: v.name || '', von: meineMail(), seit: new Date().toISOString()});
+      toast(mail + ' ist freigeschaltet');
+    }
+  });
+}
+
+/* ---------- Darstellung ---------- */
+let renderPending = false;
+function scheduleRender(){ if (renderPending) return; renderPending = true; setTimeout(() => { renderPending = false; render(); }, 16); }
+
+function route(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  if (h.indexOf('k-') === 0) return {v:'kontakt', id:h.slice(2), tab:'kontakte'};
+  if (h.indexOf('u-') === 0) return {v:'firma', id:h.slice(2), tab:'unternehmen'};
+  const v = ['start','kontakte','unternehmen','anfragen','vorlagen','hilfe','team'].includes(h) ? h : 'start';
+  return {v:v, tab:v};
+}
+function render(){
+  derive();
+  document.body.classList.toggle('ro', !S.canWrite);
+  renderHeader();
+  const view = $('#view');
+  const ae = document.activeElement;
+  const fid = ae && ae.id && view.contains(ae) ? ae.id : null;
+  let selRange = null;
+  try { if (fid && typeof ae.selectionStart === 'number') selRange = [ae.selectionStart, ae.selectionEnd]; } catch(e){}
+  const r = route();
+  let html = '';
+  try {
+    html = r.v === 'kontakt' ? viewKontakt(r.id) : r.v === 'firma' ? viewFirma(r.id) :
+      r.v === 'kontakte' ? viewKontakte() : r.v === 'unternehmen' ? viewFirmen() :
+      r.v === 'anfragen' ? viewAnfragen() : r.v === 'vorlagen' ? viewVorlagen() :
+      r.v === 'hilfe' ? viewHilfe() : r.v === 'team' ? viewTeam() : viewStart();
+  } catch(e){
+    console.error(e);
+    html = '<div class="note warn"><b>Diese Ansicht konnte nicht angezeigt werden.</b> ' + esc(e.message) + '</div>';
+  }
+  view.innerHTML = html;
+  if (fid){
+    const n = document.getElementById(fid);
+    if (n){ n.focus(); if (selRange && n.setSelectionRange){ try { n.setSelectionRange(selRange[0], selRange[1]); } catch(e){} } }
+  }
+}
+let lastTeamKey = '';
+function renderHeader(){
+  const r = route();
+  for (const a of document.querySelectorAll('#tabs a')) a.classList.toggle('on', a.dataset.tab === r.tab);
+  const team = Object.values(S.data.team).sort(byName);
+  const key = team.map(t => t.id + ':' + t.name).join('|') + '#' + meId();
+  if (key !== lastTeamKey){
+    lastTeamKey = key;
+    const s = $('#me-select');
+    s.innerHTML = team.length ? opts(team.map(t => ({v:t.id, l:t.name})), meId(), 'Bitte wählen') : '<option value="">Team anlegen</option>';
+  }
+}
+function dbNote(){
+  if (!S.canWrite) return '<div class="note warn"><b>Nur Lesezugriff.</b> Du kannst gerade nichts speichern.</div>';
+  if (S.dbState === 'none') return '<div class="note warn"><b>Keine Datenbank verbunden.</b> Lade die Seite neu und melde dich an.</div>';
+  if (S.dbState === 'slow') return '<div class="note warn"><b>Die Datenbank antwortet gerade nicht.</b> Angezeigte Daten können veraltet sein.</div>';
+  if (S.dbState === 'error' || S.dbState === 'revoked') return '<div class="note warn"><b>Verbindung zur Datenbank verloren.</b> Lade die Seite neu.</div>';
+  return '';
+}
+function loading(){ return S.dbState === 'connecting' && S.loaded.size < COLS.length && !Object.keys(S.data.kontakte).length && !Object.keys(S.data.firmen).length; }
+function notFound(what, back){ return '<a class="back" href="#' + back + '">Zurück</a><div class="panel"><div class="empty">' + (loading() ? 'Daten werden geladen.' : esc(what) + ' gibt es nicht mehr. Vielleicht wurde der Eintrag gelöscht.') + '</div></div>'; }
+
+/* ---------- Übersicht ---------- */
+function faelligItems(){
+  const D = S.data, out = [];
+  for (const k of Object.values(D.kontakte)){
+    if (!isDate(k.wiedervorlage)) continue;
+    out.push({typ:'k', id:k.id, datum:k.wiedervorlage, titel:kName(k), sub:fName(D.firmen[k.firmaId]), was:k.naechsterSchritt || 'Nächster Schritt', owner:k.verantwortlich, kl:kontaktKlasse(k)});
+  }
+  for (const a of Object.values(D.anfragen)){
+    if (!isDate(a.wiedervorlage) || a.stufe === 'nachbereitet' || a.stufe === 'abgesagt') continue;
+    const f = D.firmen[a.firmaId];
+    out.push({typ:'a', id:a.id, datum:a.wiedervorlage, titel:(fmtKurz(a.format) || 'Anfrage') + (f ? ' bei ' + f.name : ''), sub:stufeLabel(a.stufe), was:a.naechsterSchritt || 'Nächster Schritt', owner:a.verantwortlich});
+  }
+  return out.sort((x,y) => x.datum.localeCompare(y.datum));
+}
+function viewStart(){
+  const D = S.data, today = todayStr(), sem = semesterOf(today);
+  const ks = Object.values(D.kontakte), fs = Object.values(D.firmen), as = Object.values(D.anfragen);
+  const datum = new Date().toLocaleDateString('de-DE', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  let h = '<div class="ph"><div><div class="eyebrow">' + esc(datum) + ' · ' + esc(sem) + '</div><h1>Übersicht</h1></div>' +
+    '<div class="actions w"><button class="btn" data-act="newAnfrage">Neue Anfrage</button><button class="btn pri" data-act="newKontakt">Neuer Kontakt</button></div></div>' + dbNote();
+  if (loading()) return h + '<div class="panel"><div class="empty">Daten werden geladen.</div></div>';
+  if (!ks.length && !fs.length && !as.length) return h + welcome();
+
+  const me = meId();
+  const alle = faelligItems();
+  const overAll = alle.filter(i => i.datum < today).length;
+  let items = alle.filter(i => daysBetween(today, i.datum) <= 7);
+  if (S.ui.nurMeine && me) items = items.filter(i => i.owner === me);
+  const offen = as.filter(a => !['durchgefuehrt','nachbereitet','abgesagt'].includes(a.stufe));
+  const top = ks.map(k => ({k:k, w:wichtigkeit(k)})).filter(x => x.w.kl === 'A');
+  const zusagen = as.filter(a => ['zugesagt','planung','durchgefuehrt','nachbereitet'].includes(a.stufe) && anfrageSemester(a) === sem).length;
+
+  const tk = (l, v, href, warn) => '<a class="tk" href="' + href + '"><div class="tk-l">' + esc(l) + '</div><div class="tk-v' + (warn ? ' warn' : '') + '">' + v + '</div></a>';
+  h += '<div class="ticker" aria-label="Kennzahlen">' +
+    tk('Top-Kontakte', top.length, '#kontakte') + tk('Kontakte', ks.length, '#kontakte') + tk('Unternehmen', fs.length, '#unternehmen') +
+    tk('Offene Anfragen', offen.length, '#anfragen') + tk('Überfällig', overAll, '#start', overAll > 0) + tk('Zusagen ' + sem, zusagen, '#anfragen') + '</div>';
+
+  let fl = '<section class="panel"><div class="panel-h"><h2>Fällig in den nächsten 7 Tagen</h2>' +
+    (me ? '<label class="check"><input type="checkbox" id="f-meine" data-filter="nurMeine"' + (S.ui.nurMeine ? ' checked' : '') + '> Nur meine</label>' : '') + '</div>';
+  if (!items.length) fl += '<div class="empty">' + (S.ui.nurMeine ? 'Für dich ist nichts fällig.' : 'Nichts fällig. Alle Wiedervorlagen liegen weiter in der Zukunft.') + '</div>';
+  else fl += '<ul class="il">' + items.map(i => '<li>' + (i.typ === 'k' ? badge(i.kl, 'sm') : '<span class="chip">Anfrage</span>') +
+    '<div class="grow"><a class="t" href="' + (i.typ === 'k' ? '#k-' + i.id : '#anfragen') + '">' + esc(i.titel) + '</a><div class="s">' + esc(i.was) + ' · ' + esc(i.sub) + '</div></div>' +
+    '<div class="side">' + duePill(i.datum) + '<span class="s">' + esc(tName(i.owner) || 'ohne Verantwortlichen') + '</span></div></li>').join('') + '</ul>';
+  fl += '</section>';
+
+  let al = '<section class="panel"><div class="panel-h"><h2>Top-Kontakte</h2><a href="#hilfe" class="s">Warum Top?</a></div>';
+  if (!top.length) al += '<div class="empty">Noch keine Top-Kontakte. Top wird vor allem, wer in der Chefetage sitzt, bei einem sehr bekannten Unternehmen arbeitet oder nah an der HfWU ist.</div>';
+  else al += '<ul class="il">' + top.slice(0, 8).map(x => {
+    const k = x.k, last = S.letzter[k.id];
+    return '<li>' + badge('A', 'sm') + '<div class="grow"><a class="t" href="#k-' + k.id + '">' + esc(kName(k)) + '</a><div class="s">' + esc(warumKurz(x.w)) + ' · ' + esc(fName(D.firmen[k.firmaId])) + '</div></div>' +
+      '<div class="side"><span class="s">' + (last ? 'zuletzt ' + esc(sinceTxt(last)) : 'noch kein Kontakt') + '</span>' + duePill(k.wiedervorlage) + '</div></li>';
+  }).join('') + '</ul>';
+  al += '</section>';
+
+  h += '<div class="g2">' + fl + al + '</div>';
+
+  const cnt = {};
+  for (const a of as) cnt[a.stufe || 'recherche'] = (cnt[a.stufe || 'recherche'] || 0) + 1;
+  h += '<section class="panel" style="margin-top:20px"><div class="panel-h"><h2>Anfragen nach Stufe</h2><a href="#anfragen">Zur Tafel</a></div><div class="funnel">' +
+    STUFEN.map(s => '<a class="fs' + (cnt[s.v] ? '' : ' zero') + '" href="#anfragen"><b>' + (cnt[s.v] || 0) + '</b><span>' + esc(s.l) + '</span></a>').join('') + '</div></section>';
+
+  const pflege = ks.map(k => {
+    const kl = kontaktKlasse(k), since = S.letzter[k.id] || dateOf(k.erstellt);
+    const age = since ? daysBetween(since, today) : 0;
+    return {k:k, kl:kl, since:since, over: age - PFLEGE[kl]};
+  }).filter(x => x.over > 0 && !(isDate(x.k.wiedervorlage) && x.k.wiedervorlage >= today))
+    .sort((x,y) => x.kl.localeCompare(y.kl) || y.over - x.over);
+  let pl = '<section class="panel"><div class="panel-h"><h2>Pflege fällig</h2><span class="s muted">Top alle 3, Wichtig alle 6, Normal alle 12 Monate</span></div>';
+  if (!pflege.length) pl += '<div class="empty">Alle Kontakte wurden im vorgesehenen Abstand gepflegt.</div>';
+  else pl += '<ul class="il">' + pflege.slice(0, 8).map(x => '<li>' + badge(x.kl, 'sm') + '<div class="grow"><a class="t" href="#k-' + x.k.id + '">' + esc(kName(x.k)) + '</a><div class="s">' + esc(fName(D.firmen[x.k.firmaId])) + '</div></div><div class="side"><span class="s">' + (S.letzter[x.k.id] ? 'zuletzt ' + esc(sinceTxt(S.letzter[x.k.id])) : 'angelegt ' + esc(sinceTxt(x.since))) + '</span></div></li>').join('') + '</ul>';
+  const ohne = fs.filter(f => f.wunschpartner && !ks.some(k => k.firmaId === f.id));
+  if (ohne.length) pl += '<div class="panel-h" style="border-top:1px solid var(--line)"><h2>Wunschpartner ohne Ansprechpartner</h2></div><ul class="il">' +
+    ohne.map(f => '<li>' + dots(f.bekanntheit) + '<div class="grow"><a class="t" href="#u-' + f.id + '">' + esc(f.name) + '</a><div class="s">' + esc(f.branche || '') + '</div></div><div class="side w"><button class="btn sm" data-act="newKontakt" data-firma="' + f.id + '">Kontakt anlegen</button></div></li>').join('') + '</ul>';
+  pl += '</section>';
+
+  const termine = as.filter(a => isDate(a.termin) && semesterOf(a.termin) === sem && a.stufe !== 'abgesagt').sort((x,y) => x.termin.localeCompare(y.termin));
+  let tl = '<section class="panel"><div class="panel-h"><h2>Termine ' + esc(sem) + '</h2></div>';
+  if (!termine.length) tl += '<div class="empty">In diesem Semester steht noch kein fester Termin.</div>';
+  else tl += '<ul class="il">' + termine.map(a => '<li><span class="due' + (a.termin < today ? '' : ' soon') + '">' + fmtDE(a.termin) + '</span><div class="grow"><span class="t">' + esc(fmtKurz(a.format)) + ' · ' + esc(fName(D.firmen[a.firmaId])) + '</span><div class="s">' + esc(stufeLabel(a.stufe)) + (a.teilnehmerGeplant ? ' · ' + esc(a.teilnehmerGeplant) + ' Teilnehmer geplant' : '') + '</div></div></li>').join('') + '</ul>';
+  tl += '</section>';
+
+  h += '<div class="g2" style="margin-top:20px">' + pl + tl + '</div>';
+  return h;
+}
+function welcome(){
+  return '<section class="panel welcome"><div class="panel-b">' +
+    '<h2>Willkommen im CRM des Corporate Relations Teams</h2>' +
+    '<p class="muted" style="max-width:66ch">Hier sammelt ihr alle Unternehmen und Ansprechpartner. Das CRM sagt euch bei jedem Kontakt, wie wichtig er ist: Top, Wichtig oder Normal. Dafür braucht ihr kein Vorwissen über Banken oder Jobtitel.</p>' +
+    '<ol class="steps">' +
+    '<li><div><b>Team eintragen</b><p>Unter Team &amp; Daten legt ihr alle Mitglieder an. Danach wählst du oben rechts unter „Ich bin“ deinen Namen.</p><a class="btn sm" href="#team">Zum Team</a></div></li>' +
+    '<li><div><b>Spickzettel lesen</b><p>Zwei Minuten, dann weißt du, wer wichtig ist und was Titel wie „Head of“ oder „Board Member“ bedeuten.</p><a class="btn sm" href="#hilfe">Zum Spickzettel</a></div></li>' +
+    '<li><div><b>Unternehmen anlegen</b><p>Zwei Fragen: Wie bekannt ist es, und in welcher Stadt sitzt es? Die Entfernung zur HfWU rechnet das CRM selbst aus.</p><button class="btn sm w" data-act="newFirma">Unternehmen anlegen</button></div></li>' +
+    '<li><div><b>Ansprechpartner anlegen</b><p>Jobtitel eintragen, das CRM erkennt die Stufe und zeigt, wie wichtig die Person ist.</p><button class="btn sm w" data-act="newKontakt">Kontakt anlegen</button></div></li>' +
+    '</ol></div></section>';
+}
+
+/* ---------- Kontakte ---------- */
+function ownerFilterOpts(val){
+  const team = Object.values(S.data.team).sort(byName);
+  return opts([{v:'alle', l:'Alle Verantwortlichen'}].concat(team.map(t => ({v:t.id, l:t.name}))).concat([{v:'keiner', l:'Ohne Verantwortlichen'}]), val);
+}
+function naeheFilterOpts(val){
+  return opts([{v:'alle', l:'Alle Entfernungen'}].concat(NAEHE_ORDER.map(n => ({v:n, l:NAEHE[n].l}))), val);
+}
+function seg(key, val, list){
+  return '<div class="seg" role="group">' + list.map(x => '<button type="button" class="' + (val === x[0] ? 'on' : '') + '" data-act="ui" data-k="' + key + '" data-v="' + x[0] + '">' + esc(x[1]) + '</button>').join('') + '</div>';
+}
+function viewKontakte(){
+  const D = S.data, ui = S.ui, q = ui.q.toLowerCase();
+  let xs = Object.values(D.kontakte).map(k => ({k:k, w:wichtigkeit(k), f:D.firmen[k.firmaId]}));
+  const total = xs.length;
+  if (q) xs = xs.filter(x => [kName(x.k), x.k.position, x.f && x.f.name, x.k.email].join(' ').toLowerCase().includes(q));
+  if (ui.klasse !== 'alle') xs = xs.filter(x => x.w.kl === ui.klasse);
+  if (ui.owner === 'keiner') xs = xs.filter(x => !tName(x.k.verantwortlich));
+  else if (ui.owner !== 'alle') xs = xs.filter(x => x.k.verantwortlich === ui.owner);
+  if (ui.naehe !== 'alle') xs = xs.filter(x => x.w.nz === ui.naehe);
+  const rank = w => ({chef:0, fuehrung:1, mitarbeiter:2}[w.st] ?? 3) + ({sehr:0, regional:1, wenig:2}[w.bk] ?? 3) * .1;
+  xs.sort((a,b) => a.w.kl.localeCompare(b.w.kl) || rank(a.w) - rank(b.w) || kName(a.k).localeCompare(kName(b.k), 'de'));
+
+  let h = '<div class="ph"><div><div class="eyebrow">Wichtigste zuerst</div><h1>Kontakte</h1></div><div class="actions"><a class="btn" href="#hilfe">Wer ist wichtig?</a><button class="btn pri w" data-act="newKontakt">Neuer Kontakt</button></div></div>' + dbNote();
+  h += '<div class="tools"><div class="search"><input id="f-q" type="search" data-filter="q" value="' + esc(ui.q) + '" placeholder="Suchen nach Name, Unternehmen, Jobtitel" aria-label="Kontakte durchsuchen"></div>' +
+    seg('klasse', ui.klasse, [['alle','Alle'],['A','Top'],['B','Wichtig'],['C','Normal']]) +
+    '<select id="f-owner" data-filter="owner" aria-label="Verantwortlich">' + ownerFilterOpts(ui.owner) + '</select>' +
+    '<select id="f-naehe" data-filter="naehe" aria-label="Entfernung">' + naeheFilterOpts(ui.naehe) + '</select></div>';
+  if (loading()) return h + '<div class="panel"><div class="empty">Daten werden geladen.</div></div>';
+  if (!total) return h + '<div class="panel"><div class="empty">Noch keine Kontakte. Lege zuerst ein Unternehmen an, dann den ersten Ansprechpartner.<div class="actions w" style="margin-top:10px"><button class="btn" data-act="newFirma">Unternehmen anlegen</button><button class="btn pri" data-act="newKontakt">Kontakt anlegen</button></div></div></div>';
+  if (!xs.length) return h + '<div class="panel"><div class="empty">Kein Kontakt passt zu diesem Filter.</div></div>';
+  h += '<div class="list"><div class="row row-h"><span>Wichtig?</span><span>Name und Unternehmen</span><span>Warum</span><span>Verantwortlich</span><span>Nächster Schritt</span></div>';
+  let cur = '';
+  for (const x of xs){
+    if (x.w.kl !== cur){ cur = x.w.kl; h += '<div class="grp">' + badge(cur, 'sm') + '<b>' + KL[cur].viele + '</b> · ' + xs.filter(y => y.w.kl === cur).length + '</div>'; }
+    h += kontaktRow(x);
+  }
+  return h + '</div>';
+}
+function kontaktRow(x){
+  const k = x.k, last = S.letzter[k.id], owner = tName(k.verantwortlich);
+  const next = isDate(k.wiedervorlage) ? duePill(k.wiedervorlage) + (k.naechsterSchritt ? ' <span class="muted">' + esc(k.naechsterSchritt) + '</span>' : '') :
+    '<span class="muted">' + (last ? 'zuletzt ' + esc(sinceTxt(last)) : 'noch kein Kontakt') + '</span>';
+  return '<a class="row" href="#k-' + k.id + '">' + badge(x.w.kl) +
+    '<span class="r-main"><span class="r-title">' + esc(kName(k)) + '</span><span class="r-sub">' + esc([k.position, x.f ? x.f.name : ''].filter(Boolean).join(' · ')) + '</span>' +
+    '<span class="r-meta">' + esc(warumKurz(x.w)) + '<br>' + esc(owner || 'ohne Verantwortlichen') + (isDate(k.wiedervorlage) ? ' ' + duePill(k.wiedervorlage) : '') + '</span></span>' +
+    '<span class="r-col">' + esc(warumKurz(x.w)) + '</span>' +
+    '<span class="r-col">' + esc(owner || 'niemand') + '</span><span class="r-col">' + next + '</span></a>';
+}
+
+/* ---------- Unternehmen ---------- */
+function viewFirmen(){
+  const D = S.data, ui = S.ui, q = ui.fq.toLowerCase();
+  const ks = Object.values(D.kontakte);
+  let xs = Object.values(D.firmen).map(f => ({f:f, n:ks.filter(k => k.firmaId === f.id).length, top:ks.filter(k => k.firmaId === f.id && kontaktKlasse(k) === 'A').length}));
+  const total = xs.length;
+  if (q) xs = xs.filter(x => [x.f.name, x.f.branche, x.f.standort].join(' ').toLowerCase().includes(q));
+  if (ui.naehe !== 'alle') xs = xs.filter(x => naeheOf(x.f) === ui.naehe);
+  const wert = f => (BEK[f.bekanntheit] ? BEK[f.bekanntheit].n : 0) + (naeheOf(f) ? NAEHE[naeheOf(f)].d : 0);
+  xs.sort((a,b) => (b.f.wunschpartner ? 1 : 0) - (a.f.wunschpartner ? 1 : 0) || wert(b.f) - wert(a.f) || String(a.f.name).localeCompare(String(b.f.name), 'de'));
+  let h = '<div class="ph"><div><div class="eyebrow">Wunschpartner zuerst, dann nach Bekanntheit und Nähe</div><h1>Unternehmen</h1></div><div class="actions w"><button class="btn pri" data-act="newFirma">Neues Unternehmen</button></div></div>' + dbNote();
+  h += '<div class="tools"><div class="search"><input id="f-fq" type="search" data-filter="fq" value="' + esc(ui.fq) + '" placeholder="Suchen nach Name, Branche, Standort" aria-label="Unternehmen durchsuchen"></div>' +
+    '<select id="f-fnaehe" data-filter="naehe" aria-label="Entfernung">' + naeheFilterOpts(ui.naehe) + '</select>' +
+    '<span class="muted" style="font-size:13px;display:inline-flex;gap:8px;align-items:center">' + dots('sehr') + ' kennt fast jeder · ' + dots('regional') + ' Region · ' + dots('wenig') + ' eher unbekannt</span></div>';
+  if (loading()) return h + '<div class="panel"><div class="empty">Daten werden geladen.</div></div>';
+  if (!total) return h + '<div class="panel"><div class="empty">Noch keine Unternehmen. Lege das erste an, zum Beispiel einen Wunschpartner für eine Exkursion.<div class="actions w" style="margin-top:10px"><button class="btn pri" data-act="newFirma">Unternehmen anlegen</button></div></div></div>';
+  if (!xs.length) return h + '<div class="panel"><div class="empty">Kein Unternehmen passt zur Suche.</div></div>';
+  h += '<div class="list"><div class="row fr row-h"><span></span><span>Unternehmen</span><span>Nähe</span><span>Stand</span><span>Verantwortlich</span></div>';
+  let cur = null;
+  for (const x of xs){
+    const f = x.f, g = f.wunschpartner ? 'w' : 'r';
+    if (g !== cur){ cur = g; const n = xs.filter(y => (y.f.wunschpartner ? 'w' : 'r') === g).length; h += '<div class="grp"><b>' + (g === 'w' ? 'Wunschpartner' : 'Weitere Unternehmen') + '</b> · ' + n + '</div>'; }
+    const last = S.firmaLetzter[f.id];
+    const sub = [f.branche, x.n + ' Ansprechpartner' + (x.top ? ', davon ' + x.top + ' Top' : '')].filter(Boolean).join(' · ');
+    h += '<a class="row fr" href="#u-' + f.id + '">' + dots(f.bekanntheit) +
+      '<span class="r-main"><span class="r-title">' + esc(f.name) + '</span><span class="r-sub">' + esc(sub) + '</span>' +
+      '<span class="r-meta">' + esc([BEK[f.bekanntheit] ? BEK[f.bekanntheit].l : 'Bekanntheit fehlt', naeheText(f), f.stand, tName(f.verantwortlich)].filter(Boolean).join(' · ')) + '</span></span>' +
+      '<span class="r-col">' + esc(naeheText(f)) + '</span>' +
+      '<span class="r-col">' + esc(f.stand || 'Kein Kontakt') + (last ? ' · zuletzt ' + esc(sinceTxt(last)) : '') + '</span>' +
+      '<span class="r-col">' + esc(tName(f.verantwortlich) || 'niemand') + '</span></a>';
+  }
+  return h + '</div>';
+}
+
+/* ---------- Kontakt-Detail ---------- */
+function verlaufList(entries, showKontakt){
+  if (!entries.length) return '<div class="empty">Noch keine Einträge. Trage jede Mail, jeden Anruf und jedes Treffen ein, dann weiß das ganze Team Bescheid.</div>';
+  entries.sort((a,b) => String(b.datum).localeCompare(String(a.datum)) || String(b.erstellt).localeCompare(String(a.erstellt)));
+  return '<ul class="tl">' + entries.map(v => {
+    const k = S.data.kontakte[v.kontaktId], a = S.data.anfragen[v.anfrageId];
+    const meta = [tName(v.von) ? 'von ' + tName(v.von) : '', showKontakt && k ? kName(k) : '', a ? fmtKurz(a.format) : ''].filter(Boolean).join(' · ');
+    return '<li><span class="d">' + fmtDE(v.datum) + '</span><div class="c"><span class="chip">' + esc(v.art || 'Eintrag') + '</span>' +
+      (v.ergebnis ? ' <b style="font-size:14px">' + esc(v.ergebnis) + '</b>' : '') + '<p>' + esc(v.inhalt) + '</p>' + (meta ? '<div class="m">' + esc(meta) + '</div>' : '') + '</div>' +
+      '<button class="btn ghost sm w" data-act="delVerlauf" data-id="' + v.id + '" aria-label="Eintrag löschen">Löschen</button></li>';
+  }).join('') + '</ul>';
+}
+function anfragenList(list){
+  if (!list.length) return '<div class="empty">Noch keine Anfrage.</div>';
+  return '<ul class="il">' + list.map(a => '<li><span class="chip">' + esc(fmtKurz(a.format)) + '</span><div class="grow"><button class="linkbtn t" data-act="editAnfrage" data-id="' + a.id + '">' + esc(a.titel || fmtKurz(a.format) + ' · ' + fName(S.data.firmen[a.firmaId])) + '</button><div class="s">' + esc(stufeLabel(a.stufe)) + (anfrageSemester(a) ? ' · ' + esc(anfrageSemester(a)) : '') + (isDate(a.termin) ? ' · Termin ' + fmtDE(a.termin) : '') + '</div></div><div class="side">' + duePill(a.wiedervorlage) + '</div></li>').join('') + '</ul>';
+}
+function viewKontakt(id){
+  const D = S.data, k = D.kontakte[id];
+  if (!k) return notFound('Diesen Kontakt', 'kontakte');
+  const f = D.firmen[k.firmaId], w = wichtigkeit(k), kl = w.kl;
+  const kn = find(KENNT, normKennt(k.erreichbarkeit)), me = meId();
+  let h = '<a class="back" href="#kontakte">Kontakte</a>' + dbNote();
+  if (k.verantwortlich && me && k.verantwortlich !== me && tName(k.verantwortlich)) h += '<div class="note">' + esc(tName(k.verantwortlich)) + ' betreut diesen Kontakt. Bitte vor dem Anschreiben absprechen.</div>';
+  else if (!tName(k.verantwortlich)) h += '<div class="note warn"><b>Niemand ist verantwortlich.</b> Jeder Kontakt braucht genau eine Person aus dem Team, die ihn betreut.</div>';
+  if (kl === 'A') h += '<div class="note gold"><b>Top-Kontakt.</b> Zuerst drum kümmern und vorher kurz im Team Bescheid geben.</div>';
+  h += '<div class="dh">' + badge(kl, 'lg') + '<div class="dh-main"><h1>' + esc(kName(k)) + '</h1><div class="sub">' + esc(k.position || 'Jobtitel fehlt') + (f ? ' bei <a href="#u-' + f.id + '">' + esc(f.name) + '</a>' : '') + '</div>' +
+    '<div class="chips">' + (w.st ? '<span class="chip">' + POS[w.st].l + '</span>' : '') + (w.nz ? '<span class="chip">' + NAEHE[w.nz].l + '</span>' : '') + '<span class="chip">' + esc(kn.k) + '</span>' +
+    (w.hfwu ? '<span class="chip">HfWU-Bezug</span>' : '') + (k.rolle ? '<span class="chip">' + esc(k.rolle) + '</span>' : '') + '</div></div>' +
+    '<div class="actions w"><button class="btn pri" data-act="newVerlauf" data-kontakt="' + k.id + '">Verlauf eintragen</button><button class="btn" data-act="anschreiben" data-id="' + k.id + '">Anschreiben erstellen</button><button class="btn" data-act="editKontakt" data-id="' + k.id + '">Bearbeiten</button></div></div>';
+
+  let main = '<section class="panel"><div class="panel-h"><h2>Nächster Schritt</h2><button class="btn sm w" data-act="schritt" data-id="' + k.id + '">' + (k.naechsterSchritt || isDate(k.wiedervorlage) ? 'Ändern' : 'Planen') + '</button></div><div class="panel-b">';
+  main += (k.naechsterSchritt || isDate(k.wiedervorlage)) ? '<div class="next"><span class="what">' + esc(k.naechsterSchritt || 'Wiedervorlage') + '</span><span>' + duePill(k.wiedervorlage) + (isDate(k.wiedervorlage) ? ' <span class="mono muted">' + fmtDE(k.wiedervorlage) + '</span>' : '') + '</span></div>' :
+    '<p class="muted">Kein nächster Schritt geplant. Regel im Team: Kein offener Kontakt ohne nächsten Schritt mit Datum.</p>';
+  main += '</div></section>';
+  const vs = Object.values(D.verlauf).filter(v => v.kontaktId === k.id);
+  main += '<section class="panel"><div class="panel-h"><h2>Verlauf · ' + vs.length + '</h2><button class="btn sm w" data-act="newVerlauf" data-kontakt="' + k.id + '">Eintragen</button></div>' + verlaufList(vs, false) + '</section>';
+  const as = Object.values(D.anfragen).filter(a => a.kontaktId === k.id);
+  main += '<section class="panel"><div class="panel-h"><h2>Anfragen · ' + as.length + '</h2><button class="btn sm w" data-act="newAnfrage" data-firma="' + esc(k.firmaId || '') + '" data-kontakt="' + k.id + '">Neue Anfrage</button></div>' + anfragenList(as) + '</section>';
+
+  let side = '<section class="panel"><div class="panel-h"><h2>Wie wichtig?</h2><a href="#hilfe">Spickzettel</a></div><div class="panel-b">' + wichtigBox(w, k) +
+    '<p class="muted" style="font-size:12.5px;margin:14px 0 0">Markiert ist das Feld im Raster aus Bekanntheit und Stufe. Nähe und Beziehung verschieben das Ergebnis, siehe Rechenweg oben.</p>' +
+    matrixHtml(w.bk, w.st) + '</div></section>';
+  const linked = safeUrl(k.linkedin);
+  side += '<section class="panel"><div class="panel-h"><h2>Kontaktwege</h2></div><div class="panel-b"><dl class="kv">' +
+    (k.email ? '<dt>E-Mail</dt><dd><div class="copyrow"><span>' + esc(k.email) + '</span><button class="btn ghost sm" data-act="copy" data-text="' + esc(k.email) + '">Kopieren</button></div></dd>' : '') +
+    (k.telefon ? '<dt>Telefon</dt><dd><div class="copyrow"><span>' + esc(k.telefon) + '</span><button class="btn ghost sm" data-act="copy" data-text="' + esc(k.telefon) + '">Kopieren</button></div></dd>' : '') +
+    (k.linkedin ? '<dt>LinkedIn</dt><dd>' + (linked ? '<a href="' + esc(linked) + '" target="_blank" rel="noopener">Profil öffnen</a>' : esc(k.linkedin)) + '</dd>' : '') +
+    (k.assistenz ? '<dt>Vorzimmer</dt><dd>' + esc(k.assistenz) + '</dd>' : '') +
+    '<dt>Anrede</dt><dd>' + esc(briefanrede(k)) + '</dd>' +
+    '<dt>Verantwortlich</dt><dd>' + esc(tName(k.verantwortlich) || 'niemand') + '</dd>' +
+    '<dt>Letzter Kontakt</dt><dd>' + (S.letzter[k.id] ? fmtDE(S.letzter[k.id]) + ' · ' + esc(sinceTxt(S.letzter[k.id])) : 'noch keiner') + '</dd>' +
+    '</dl>' + (!k.email && !k.telefon && !k.linkedin ? '<p class="muted" style="font-size:13px;margin:10px 0 0">Noch keine Kontaktwege hinterlegt.</p>' : '') + '</div></section>';
+  if (f){
+    const boss = D.kontakte[k.berichtetAn];
+    const team = Object.values(D.kontakte).filter(x => x.berichtetAn === k.id);
+    side += '<section class="panel"><div class="panel-h"><h2>Im Unternehmen</h2><a href="#u-' + f.id + '">Organigramm</a></div><div class="panel-b"><dl class="kv">' +
+      '<dt>Berichtet an</dt><dd>' + (boss ? '<a href="#k-' + boss.id + '">' + esc(kName(boss)) + '</a>' : 'unbekannt') + '</dd>' +
+      (team.length ? '<dt>Darunter</dt><dd>' + team.map(t => '<a href="#k-' + t.id + '">' + esc(kName(t)) + '</a>').join(', ') + '</dd>' : '') + '</dl></div></section>';
+  }
+  if (k.aufhaenger) side += '<section class="panel"><div class="panel-h"><h2>Gesprächsaufhänger</h2></div><div class="panel-b"><p class="pre">' + esc(k.aufhaenger) + '</p></div></section>';
+  side += '<section class="panel"><div class="panel-h"><h2>Daten</h2></div><div class="panel-b"><dl class="kv"><dt>Quelle</dt><dd>' + esc(k.quelle || 'nicht angegeben') + '</dd><dt>Angelegt</dt><dd>' + fmtDE(dateOf(k.erstellt)) + '</dd><dt>Geändert</dt><dd>' + fmtDE(dateOf(k.geaendert)) + '</dd></dl>' +
+    '<div class="actions w" style="margin-top:12px"><button class="btn danger sm" data-act="delKontakt" data-id="' + k.id + '">Kontakt löschen</button></div></div></section>';
+  return h + '<div class="detail"><div class="stack">' + main + '</div><div class="stack">' + side + '</div></div>';
+}
+
+/* ---------- Unternehmen-Detail ---------- */
+function orgChart(f){
+  const ks = Object.values(S.data.kontakte).filter(k => k.firmaId === f.id).map(k => ({k:k, w:wichtigkeit(k, f)}));
+  let h = '<div class="org">';
+  const rows = POS_ORDER.slice();
+  if (ks.some(x => !x.w.st)) rows.push('');
+  for (const st of rows){
+    const inL = ks.filter(x => x.w.st === st).sort((a,b) => a.w.kl.localeCompare(b.w.kl) || kName(a.k).localeCompare(kName(b.k), 'de'));
+    h += '<div class="lvl"><div class="lvl-h">' + (st ? POS[st].l : 'Stufe unbekannt') + '</div><div class="lvl-c">';
+    if (!inL.length) h += '<div class="oc-empty">' + (st === 'mitarbeiter' ? 'Noch niemand, zum Beispiel aus HR oder Recruiting' : 'Hier fehlt euch noch ein Kontakt') + '</div>';
+    for (const x of inL){
+      const k = x.k, boss = S.data.kontakte[k.berichtetAn];
+      h += '<a class="oc ' + x.w.kl + '" href="#k-' + k.id + '"><span>' + badge(x.w.kl, 'sm') + '</span><span class="n">' + esc(kName(k)) + '</span><span class="p">' + esc([k.position, k.rolle].filter(Boolean).join(' · ') || 'Jobtitel fehlt') + '</span>' + (boss ? '<span class="u">berichtet an ' + esc(kName(boss)) + '</span>' : '') + '</a>';
+    }
+    h += '</div></div>';
+  }
+  return h + '</div>';
+}
+function viewFirma(id){
+  const D = S.data, f = D.firmen[id];
+  if (!f) return notFound('Dieses Unternehmen', 'unternehmen');
+  const ks = Object.values(D.kontakte).filter(k => k.firmaId === f.id);
+  const bk = bekOf(f), web = safeUrl(f.webseite);
+  let h = '<a class="back" href="#unternehmen">Unternehmen</a>' + dbNote();
+  h += '<div class="dh"><div class="dh-main"><h1>' + esc(f.name) + '</h1><div class="sub">' + esc([f.branche, f.standort].filter(Boolean).join(' · ') || 'Noch keine Angaben') + '</div>' +
+    '<div class="chips">' + (f.wunschpartner ? '<span class="chip gold">Wunschpartner</span>' : '') + '<span class="chip">' + esc(bk ? BEK[bk].l : 'Bekanntheit fehlt') + '</span><span class="chip">' + esc(naeheText(f)) + '</span><span class="chip">' + esc(f.stand || 'Kein Kontakt') + '</span></div></div>' +
+    '<div class="actions w"><button class="btn pri" data-act="newKontakt" data-firma="' + f.id + '">Ansprechpartner hinzufügen</button><button class="btn" data-act="newAnfrage" data-firma="' + f.id + '">Neue Anfrage</button><button class="btn" data-act="editFirma" data-id="' + f.id + '">Bearbeiten</button></div></div>';
+
+  let main = '<section class="panel"><div class="panel-h"><h2>Organigramm · ' + ks.length + ' Ansprechpartner</h2><span class="muted" style="font-size:12.5px">Oben die Chefetage, unten die Mitarbeiter</span></div>' + (ks.length ? orgChart(f) : '<div class="empty">Noch kein Ansprechpartner. Lege die erste Person an, dann entsteht hier das Organigramm.</div>') + '</section>';
+  const as = Object.values(D.anfragen).filter(a => a.firmaId === f.id);
+  main += '<section class="panel"><div class="panel-h"><h2>Anfragen · ' + as.length + '</h2><button class="btn sm w" data-act="newAnfrage" data-firma="' + f.id + '">Neue Anfrage</button></div>' + anfragenList(as) + '</section>';
+  const ids = new Set(ks.map(k => k.id));
+  const vs = Object.values(D.verlauf).filter(v => v.firmaId === f.id || ids.has(v.kontaktId));
+  main += '<section class="panel"><div class="panel-h"><h2>Verlauf · ' + vs.length + '</h2><button class="btn sm w" data-act="newVerlauf" data-firma="' + f.id + '">Eintragen</button></div>' + verlaufList(vs, true) + '</section>';
+
+  const nz = naeheOf(f);
+  let side = '<section class="panel"><div class="panel-h"><h2>Wie bekannt und wie nah?</h2></div><div class="panel-b"><dl class="kv">' +
+    '<dt>Bekanntheit</dt><dd>' + (bk ? dots(bk) + ' ' + esc(BEK[bk].l) : '<span style="color:var(--warn)">fehlt noch</span>') + '</dd>' +
+    '<dt>Nähe</dt><dd>' + (nz ? esc(naeheText(f)) + (nz !== 'mittel' ? ' <span class="rw-s ' + (nz === 'nah' ? 'up">↑ eine Stufe höher' : 'down">↓ eine Stufe niedriger') + '</span>' : '') : '<span style="color:var(--warn)">fehlt noch</span>') + '</dd></dl>';
+  if (bk || nz) side += '<div class="umgang"><b>Was heißt das für Kontakte hier?</b>' + POS_ORDER.map(st => POS[st].l + ': ' + KL[wichtigkeit({positionStufe:st, erreichbarkeit:'kalt', verbindung:'Keine'}, f).vorschlag].n).join(' · ') + '. Wer uns gut kennt oder einen Bezug zur HfWU hat, noch eine Stufe höher.</div>';
+  if (!bk || !nz) side += '<p style="margin:12px 0 0;font-size:13px;color:var(--warn)">Trag unter Bearbeiten ' + [!bk && 'die Bekanntheit', !nz && 'den Standort'].filter(Boolean).join(' und ') + ' ein. Erst dann stimmt die Wichtigkeit der Kontakte.</p>';
+  side += '</div></section>';
+  side += '<section class="panel"><div class="panel-h"><h2>Angaben</h2></div><div class="panel-b"><dl class="kv">' +
+    '<dt>Branche</dt><dd>' + esc(f.branche || 'offen') + '</dd>' +
+    '<dt>Standort</dt><dd>' + esc(f.standort || 'offen') + (f.entfernung ? ' · ' + esc(f.entfernung) + ' km von der HfWU' : '') + '</dd>' +
+    (f.webseite ? '<dt>Webseite</dt><dd>' + (web ? '<a href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(web.replace(/^https?:\/\//, '')) + '</a>' : esc(f.webseite)) + '</dd>' : '') +
+    '<dt>Sponsoring</dt><dd>' + (f.sponsoringDenkbar || f.sponsoring === 'ja' ? 'denkbar' : 'noch kein Thema') + '</dd>' +
+    '<dt>Verantwortlich</dt><dd>' + esc(tName(f.verantwortlich) || 'niemand') + '</dd>' +
+    '<dt>Letzter Kontakt</dt><dd>' + (S.firmaLetzter[f.id] ? fmtDE(S.firmaLetzter[f.id]) : 'noch keiner') + '</dd></dl></div></section>';
+  if (f.notizen) side += '<section class="panel"><div class="panel-h"><h2>Notizen</h2></div><div class="panel-b"><p class="pre">' + esc(f.notizen) + '</p></div></section>';
+  side += '<section class="panel w"><div class="panel-b"><button class="btn danger sm" data-act="delFirma" data-id="' + f.id + '">Unternehmen löschen</button></div></section>';
+  return h + '<div class="detail"><div class="stack">' + main + '</div><div class="stack">' + side + '</div></div>';
+}
+
+/* ---------- Anfragen ---------- */
+function viewAnfragen(){
+  const D = S.data, ui = S.ui, cur = semesterOf(todayStr());
+  const semVal = ui.semester === 'aktuell' ? cur : ui.semester;
+  let as = Object.values(D.anfragen);
+  const total = as.length;
+  if (semVal !== 'alle') as = as.filter(a => { const s = anfrageSemester(a); return s === semVal || (!s && semVal === cur); });
+  if (ui.format !== 'alle') as = as.filter(a => a.format === ui.format);
+  const sems = semesterList();
+  for (const a of Object.values(D.anfragen)){ const s = anfrageSemester(a); if (s && !sems.includes(s)) sems.push(s); }
+  let h = '<div class="ph"><div><div class="eyebrow">Von der Recherche bis zum Dank</div><h1>Anfragen</h1></div><div class="actions w"><button class="btn pri" data-act="newAnfrage">Neue Anfrage</button></div></div>' + dbNote();
+  h += '<div class="tools"><select id="f-sem" data-filter="semester" aria-label="Semester">' + opts([{v:'alle', l:'Alle Semester'}].concat(sems.map(s => ({v:s, l:s + (s === cur ? ' (aktuell)' : '')}))), semVal) + '</select>' +
+    '<select id="f-format" data-filter="format" aria-label="Format">' + opts([{v:'alle', l:'Alle Formate'}].concat(FORMATE.map(x => ({v:x, l:x}))), ui.format) + '</select>' +
+    '<span class="muted" style="font-size:13px">' + as.length + ' von ' + total + ' Anfragen</span></div>';
+  if (loading()) return h + '<div class="panel"><div class="empty">Daten werden geladen.</div></div>';
+  if (!total) return h + '<div class="panel"><div class="empty">Noch keine Anfrage. Eine Anfrage ist ein Vorhaben mit einem Unternehmen, zum Beispiel eine Exkursion oder ein Vortrag an der HfWU.<div class="actions w" style="margin-top:10px"><button class="btn pri" data-act="newAnfrage">Anfrage anlegen</button></div></div></div>';
+  h += '<div class="board">' + STUFEN.map(s => {
+    const inS = as.filter(a => (a.stufe || 'recherche') === s.v).sort((x,y) => String(x.wiedervorlage || '9').localeCompare(String(y.wiedervorlage || '9')));
+    return '<div class="col"><div class="col-h"><span>' + esc(s.l) + '</span><b>' + inS.length + '</b></div>' + inS.map(anfrageCard).join('') + '</div>';
+  }).join('') + '</div>';
+  const aus = as.filter(a => a.stufe === 'spaeter' || a.stufe === 'abgesagt');
+  if (aus.length) h += '<section class="panel" style="margin-top:16px"><div class="panel-h"><h2>Später wieder und abgesagt · ' + aus.length + '</h2></div>' + anfragenList(aus) + '</section>';
+  return h;
+}
+function anfrageCard(a){
+  const D = S.data, f = D.firmen[a.firmaId], k = D.kontakte[a.kontaktId];
+  const i = STUFEN.findIndex(s => s.v === (a.stufe || 'recherche'));
+  return '<div class="card"><div class="card-top"><span class="chip">' + esc(fmtKurz(a.format) || 'Anfrage') + '</span>' + (k ? badge(kontaktKlasse(k), 'sm') : '') + '</div>' +
+    '<button class="card-t" data-act="editAnfrage" data-id="' + a.id + '">' + esc(a.titel || fName(f)) + '</button>' +
+    '<div class="card-s">' + (a.titel && f ? '<a href="#u-' + f.id + '">' + esc(f.name) + '</a>' : '') + (a.titel && f && k ? ' · ' : '') + (k ? '<a href="#k-' + k.id + '">' + esc(kName(k)) + '</a>' : (a.titel ? '' : 'Noch kein Ansprechpartner')) + (f && f.wunschpartner ? ' · Wunschpartner' : '') + '</div>' +
+    (isDate(a.termin) ? '<div class="card-s mono">Termin ' + fmtDE(a.termin) + '</div>' : isDate(a.wunschtermin) ? '<div class="card-s mono">Wunsch ' + fmtDE(a.wunschtermin) + '</div>' : '') +
+    (a.naechsterSchritt || isDate(a.wiedervorlage) ? '<div class="card-s">' + esc(a.naechsterSchritt || 'Wiedervorlage') + ' ' + duePill(a.wiedervorlage) + '</div>' : '') +
+    '<div class="card-f"><span class="muted">' + esc(tName(a.verantwortlich) || 'ohne Verantwortlichen') + '</span><span class="mv w">' +
+    (i > 0 ? '<button class="btn ghost sm" data-act="stufe" data-id="' + a.id + '" data-dir="-1" aria-label="Eine Stufe zurück">Zurück</button>' : '') +
+    (i < STUFEN.length - 1 ? '<button class="btn sm" data-act="stufe" data-id="' + a.id + '" data-dir="1">Weiter</button>' : '') + '</span></div></div>';
+}
+
+/* ---------- Vorlagen ---------- */
+const PLATZHALTER = [['{briefanrede}','Sehr geehrte Frau Dr. Müller / Hallo Anna'],['{vorname}',''],['{nachname}',''],['{titel}',''],['{position}',''],['{firma}',''],['{absender}','dein Name aus „Ich bin“'],['{semester}','z.B. WS 26/27']];
+function viewVorlagen(){
+  const vs = Object.values(S.data.vorlagen).sort(byName);
+  let h = '<div class="ph"><div><div class="eyebrow">Anschreiben für jedes Format</div><h1>Vorlagen</h1></div><div class="actions w"><button class="btn pri" data-act="newVorlage">Neue Vorlage</button></div></div>' + dbNote();
+  h += '<section class="panel" style="margin-bottom:16px"><div class="panel-b"><p style="margin:0 0 8px">Platzhalter in geschweiften Klammern füllt das CRM beim Anschreiben automatisch aus dem Kontakt. Text in eckigen Klammern passt du jedes Mal von Hand an.</p><div class="legend">' + PLATZHALTER.map(p => '<code title="' + esc(p[1]) + '">' + esc(p[0]) + '</code>').join('') + '</div></div></section>';
+  if (loading()) return h + '<div class="panel"><div class="empty">Daten werden geladen.</div></div>';
+  if (!vs.length) return h + '<div class="panel"><div class="empty">Noch keine Vorlage.</div></div>';
+  h += '<div class="tpl">' + vs.map(v => '<section class="panel"><div class="panel-h"><h2 style="text-transform:none;letter-spacing:0;font-size:15px;color:var(--fg)">' + esc(v.name) + '</h2><span class="chip">' + esc(v.format ? fmtKurz(v.format) : 'Alle Formate') + '</span></div><div class="panel-b"><p style="margin:0 0 6px;font-size:13px"><b>Betreff:</b> ' + esc(v.betreff) + '</p><p class="pre">' + esc(v.text) + '</p>' +
+    '<div class="actions w" style="margin-top:12px"><button class="btn sm" data-act="editVorlage" data-id="' + v.id + '">Bearbeiten</button><button class="btn ghost sm" data-act="delVorlage" data-id="' + v.id + '">Löschen</button></div></div></section>').join('') + '</div>';
+  return h;
+}
+
+/* ---------- Spickzettel ---------- */
+const TITEL_TABELLE = [
+  ['Vorstand, Board Member, CEO, CFO', 'chef', 'Oberste Leitung. CEO ist der Chef, CFO der Finanzchef.'],
+  ['Geschäftsführer, Managing Director', 'chef', 'Leitet das ganze Unternehmen. In Banken ist Managing Director eine der höchsten Stufen.'],
+  ['Partner, Inhaber, Gründer', 'chef', 'Dem gehört das Unternehmen (mit). Typisch in Beratungen, Kanzleien und Start-ups.'],
+  ['Aufsichtsrat', 'chef', 'Kontrolliert den Vorstand. Sehr hoch, selten direkt ansprechbar.'],
+  ['Head of, Bereichsleiter, Director', 'fuehrung', 'Leitet einen großen Bereich mit vielen Leuten.'],
+  ['Abteilungsleiter, Teamleiter, Team Lead', 'fuehrung', 'Leitet eine Abteilung oder ein Team.'],
+  ['Prokurist', 'fuehrung', 'Darf für das Unternehmen unterschreiben. Meist eine erfahrene Führungskraft.'],
+  ['Vice President, Executive Director', 'fuehrung', 'Klingt nach Chefetage, ist in vielen Banken aber eine mittlere bis hohe Führungsstufe.'],
+  ['Senior Manager, Principal', 'fuehrung', 'Erfahrene Führungskraft in Beratung oder Bank.'],
+  ['Manager (z.B. Relationship Manager)', 'mitarbeiter', 'Im Englischen oft ein Fachtitel ohne Führung.'],
+  ['Analyst, Associate', 'mitarbeiter', 'Einstiegs- und mittlere Stufe in Banken und Beratungen.'],
+  ['Referent, Berater, Consultant, Spezialist', 'mitarbeiter', 'Fachkraft ohne Führungsaufgabe.'],
+  ['Recruiter, HR, Employer Branding', 'mitarbeiter', 'Personalbereich. Oft der beste Einstieg für eine Exkursion.'],
+  ['Assistenz, Vorzimmer', 'mitarbeiter', 'Entscheidet nicht, kann aber zur Chefetage durchstellen.'],
+  ['Werkstudent, Trainee, Praktikant', 'mitarbeiter', 'Am Anfang der Laufbahn. Gut als Tippgeber.']];
+function titelErgebnis(t){
+  if (!String(t || '').trim()) return '<span class="muted">Tipp einen Titel ein, zum Beispiel „Head of HR“ oder „Board Member“.</span>';
+  const d = erkenneTitel(t);
+  if (!d) return '<span style="color:var(--warn)">Nicht erkannt. Frag im Team oder such den Titel kurz im Internet. Im Zweifel erst mal „Mitarbeiter“ wählen, ändern geht jederzeit.</span>';
+  return '<b>' + POS[d.s].l + '.</b> ' + esc(d.e);
+}
+function ortErgebnis(t){
+  if (!String(t || '').trim()) return '<span class="muted">Tipp eine Stadt ein, zum Beispiel „Esslingen“ oder „Frankfurt“.</span>';
+  const o = erkenneOrt(t);
+  if (!o) return '<span style="color:var(--warn)">Stadt nicht in der Liste. Schätze selbst: bis etwa 45 Minuten Fahrt ist nah, bis etwa 1,5 Stunden mittel, alles darüber weit.</span>';
+  return '<b>' + esc(o.name) + ', ca. ' + o.km + ' km Luftlinie von Nürtingen.</b> ' + NAEHE[o.n].l + (o.n === 'nah' ? ': eine Stufe höher.' : o.n === 'weit' ? ': eine Stufe niedriger.' : ': bleibt gleich.');
+}
+function viewHilfe(){
+  let h = '<div class="ph"><div><div class="eyebrow">Für alle ohne Finance-Vorwissen</div><h1>Spickzettel</h1></div></div>';
+  h += '<section class="panel"><div class="panel-b"><h2 class="disp">Wer ist wichtiger? Drei Fragen reichen.</h2>' +
+    '<p class="lead"><b>1.</b> Wie bekannt ist das Unternehmen? <b>2.</b> Wie hoch sitzt die Person? Daraus ergibt sich das Raster:</p>' +
+    matrixHtml('', '', true) +
+    '<p class="lead" style="margin-top:18px"><b>3. Wie nah ist das Unternehmen an der HfWU?</b> Je näher, desto besser.</p>' +
+    '<ul class="tipp" style="margin-top:8px"><li><b>Nah dran</b> (bis etwa 50 km): eine Stufe höher.</li><li><b>Mittlere Entfernung</b> (50 bis 150 km): bleibt gleich.</li><li><b>Weit weg</b> (über 150 km): eine Stufe niedriger.</li><li><b>Bonus:</b> Kennt uns die Person schon gut oder hat sie einen Bezug zur HfWU, noch eine Stufe höher.</li></ul>' +
+    '<p class="muted" style="font-size:14px;margin:10px 0 0">Höher als Top oder niedriger als Normal geht nicht. Das CRM rechnet alles automatisch, du beantwortest nur die Fragen.</p>' +
+    beispiele() + '</div></section>';
+
+  h += '<h2 class="disp" style="margin:28px 0 12px">Was mache ich mit Top, Wichtig und Normal?</h2><div class="g3">' +
+    ['A','B','C'].map(kl => '<div class="kcard">' + badge(kl) + '<p>' + esc(KL[kl].u) + '</p></div>').join('') + '</div>';
+
+  h += '<div class="g2" style="margin-top:28px"><div class="stack">';
+  h += '<section class="panel"><div class="panel-h"><h2>Jobtitel übersetzt</h2></div><div class="panel-b"><p style="margin-top:0">Englische Titel klingen oft größer, als sie sind. Das CRM erkennt die meisten automatisch. Probier es aus:</p>' +
+    '<div class="titeltest"><input id="f-titel" data-filter="titel" value="' + esc(S.ui.titel) + '" placeholder="Jobtitel eintippen" aria-label="Jobtitel testen"><div class="res">' + titelErgebnis(S.ui.titel) + '</div></div></div>' +
+    '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Titel</th><th>Stufe</th><th>Was heißt das?</th></tr></thead><tbody>' +
+    TITEL_TABELLE.map(r => '<tr><td>' + esc(r[0]) + '</td><td style="white-space:nowrap">' + POS[r[1]].l + '</td><td class="muted">' + esc(r[2]) + '</td></tr>').join('') + '</tbody></table></div></section>';
+  h += '</div><div class="stack">';
+  h += '<section class="panel"><div class="panel-h"><h2>Wie bekannt ist ein Unternehmen?</h2></div><div class="panel-b"><p style="margin-top:0"><b>Faustregel:</b> Würden deine Eltern den Namen kennen? Ja: kennt fast jeder. Vielleicht: Region oder Finanzwelt. Nein: eher unbekannt.</p><div class="bek">' +
+    BEK_ORDER.map(b => '<div>' + dots(b) + '<div><b>' + esc(BEK[b].l) + '</b><p>' + esc(BEK[b].h) + '</p></div></div>').join('') +
+    '</div><p class="muted" style="font-size:13px;margin:12px 0 0">Unsicher? Nimm die mittlere Stufe und frag im Team.</p></div></section>';
+  h += '<section class="panel"><div class="panel-h"><h2>Wie nah ist ein Unternehmen?</h2></div><div class="panel-b">' +
+    '<p style="margin-top:0"><b>Warum zählt die Nähe?</b> Exkursionen sind leichter zu organisieren, mehr Mitglieder kommen mit, und Gäste kommen eher abends für einen Vortrag nach Nürtingen.</p><div class="bek">' +
+    NAEHE_ORDER.map(n => '<div><span class="rw-s ' + (n === 'nah' ? 'up">↑' : n === 'weit' ? 'down">↓' : '" style="background:var(--surface-2);color:var(--muted)">=') + '</span><div><b>' + esc(NAEHE[n].l) + '</b><p>' + esc(NAEHE[n].h) + '</p></div></div>').join('') + '</div>' +
+    '<p style="margin:14px 0 0">Das CRM kennt die wichtigsten Städte und rechnet die Entfernung selbst aus. Probier es aus:</p>' +
+    '<div class="titeltest"><input id="f-ort" data-filter="ort" value="' + esc(S.ui.ort) + '" placeholder="Stadt eintippen, z.B. Reutlingen" aria-label="Stadt testen"><div class="res">' + ortErgebnis(S.ui.ort) + '</div></div></div></section>';
+  h += '<section class="panel"><div class="panel-h"><h2>Wen spreche ich zuerst an?</h2></div><div class="panel-b"><ul class="tipp">' +
+    '<li><b>Für eine Exkursion:</b> Personalabteilung, Recruiting oder Employer Branding. Die organisieren solche Besuche.</li>' +
+    '<li><b>Für einen Vortrag:</b> eine Führungskraft aus dem Fachbereich, zum Beispiel Head of Research oder Leiter Handel.</li>' +
+    '<li><b>Chefetage:</b> nur nach Absprache im Team, am besten über jemanden, der uns vorstellen kann.</li>' +
+    '<li><b>Unsicher:</b> Kontakt trotzdem eintragen. Die Angaben lassen sich jederzeit ändern.</li></ul></div></section>';
+  h += '<section class="panel"><div class="panel-h"><h2>Kleines Lexikon</h2></div><div class="panel-b"><dl class="lex">' +
+    '<dt>DAX</dt><dd>Die 40 größten börsennotierten Unternehmen Deutschlands. Wer im DAX ist, kennt fast jeder.</dd>' +
+    '<dt>Mittelstand</dt><dd>Kleine und mittlere Unternehmen, oft Familienbetriebe. In Baden-Württemberg gibt es sehr viele davon.</dd>' +
+    '<dt>Sparkasse, Volksbank</dt><dd>Regionale Banken. Sparkassen werden von Städten und Landkreisen getragen, Volksbanken gehören ihren Mitgliedern.</dd>' +
+    '<dt>Employer Branding</dt><dd>Das Team, das ein Unternehmen als Arbeitgeber bekannt macht. Lädt oft Studierende ein.</dd>' +
+    '<dt>Prokura</dt><dd>Das Recht, für das Unternehmen zu unterschreiben.</dd>' +
+    '<dt>Türöffner</dt><dd>Jemand, der uns anderen im Unternehmen vorstellt.</dd>' +
+    '<dt>Wiedervorlage</dt><dd>Das Datum, an dem du dich wieder um einen Kontakt kümmerst.</dd></dl></div></section>';
+  h += '</div></div>';
+  return h;
+}
+
+/* ---------- Team und Daten ---------- */
+function viewTeam(){
+  const D = S.data, team = Object.values(D.team).sort(byName), today = todayStr();
+  let h = '<div class="ph"><div><div class="eyebrow">Mitglieder, Regeln und Sicherung</div><h1>Team &amp; Daten</h1></div><div class="actions w"><button class="btn pri" data-act="newTeam">Mitglied hinzufügen</button></div></div>' + dbNote();
+  let t = '<section class="panel"><div class="panel-h"><h2>Corporate Relations Team · ' + team.length + '</h2>' + (team.length > 1 ? '<button class="btn sm w" data-act="transfer">Kontakte übertragen</button>' : '') + '</div>';
+  if (!team.length) t += '<div class="empty">Noch niemand eingetragen. Lege alle Mitglieder an, damit jeder Kontakt einen Verantwortlichen bekommt.</div>';
+  else t += '<ul class="il">' + team.map(m => {
+    const nk = Object.values(D.kontakte).filter(k => k.verantwortlich === m.id).length;
+    const na = Object.values(D.anfragen).filter(a => a.verantwortlich === m.id && !['nachbereitet','abgesagt'].includes(a.stufe)).length;
+    return '<li><div class="grow"><span class="t">' + esc(m.name) + (m.id === meId() ? ' <span class="chip">du</span>' : '') + '</span><div class="s">' + nk + ' Kontakte · ' + na + ' offene Anfragen</div></div><div class="side w" style="flex-direction:row"><button class="btn ghost sm" data-act="renameTeam" data-id="' + m.id + '">Umbenennen</button><button class="btn ghost sm" data-act="delTeam" data-id="' + m.id + '">Entfernen</button></div></li>';
+  }).join('') + '</ul>';
+  t += '</section>';
+
+  const rules = '<section class="panel"><div class="panel-h"><h2>Regeln im Team</h2></div><div class="panel-b"><ol class="rules">' +
+    '<li>Jeder Kontakt hat genau einen Verantwortlichen. Wer einen fremden Kontakt anschreiben will, spricht sich vorher ab.</li>' +
+    '<li>Kein offener Kontakt ohne nächsten Schritt mit Datum.</li>' +
+    '<li>Jede Mail, jeder Anruf und jedes Treffen kommt in den Verlauf.</li>' +
+    '<li>Top-Kontakte werden persönlich angeschrieben und vorher im Team abgestimmt.</li>' +
+    '<li>Nachfassen: Top nach 14 Tagen, höchstens einmal. Wichtig und Normal nach 7 Tagen. Das CRM setzt die Wiedervorlage beim Eintragen automatisch.</li>' +
+    '<li>Dank innerhalb von 48 Stunden nach jeder Veranstaltung.</li>' +
+    '<li>Wer das Team verlässt, überträgt vorher seine Kontakte an eine Nachfolgerin oder einen Nachfolger.</li></ol></div></section>';
+
+  const modell = '<section class="panel"><div class="panel-h"><h2>So entsteht die Wichtigkeit</h2><a href="#hilfe">Zum Spickzettel</a></div><div class="panel-b"><p style="margin-top:0">Bekanntheit des Unternehmens und Stufe der Position ergeben das Raster. Nah an der HfWU: eine Stufe höher, weit weg: eine Stufe niedriger. Wer uns gut kennt oder einen Bezug zur HfWU hat: noch eine Stufe höher. Jede Einschätzung lässt sich im Kontakt von Hand ändern.</p>' + matrixHtml('', '') + '</div></section>';
+
+  const alt = Object.values(D.kontakte).filter(k => { const s = S.letzter[k.id] || dateOf(k.erstellt); return s && daysBetween(s, today) > 730; });
+  const ohneQ = Object.values(D.kontakte).filter(k => !k.quelle);
+  let ds = '<section class="panel"><div class="panel-h"><h2>Datenschutz</h2></div><div class="panel-b"><ol class="rules">' +
+    '<li>Nur geschäftliche Kontaktdaten speichern und immer die Quelle angeben.</li>' +
+    '<li>Notizen sachlich halten. Jede Person darf erfahren, was über sie gespeichert ist.</li>' +
+    '<li>Kontakte ohne Aktivität seit 24 Monaten prüfen und löschen, wenn sie nicht mehr gebraucht werden.</li></ol>' +
+    '<p style="margin:12px 0 0;font-size:14px"><b>' + alt.length + '</b> Kontakte ohne Aktivität seit 24 Monaten · <b>' + ohneQ.length + '</b> Kontakte ohne Quelle</p>' +
+    (alt.length ? '<ul class="il" style="margin-top:8px">' + alt.map(k => '<li><div class="grow"><a class="t" href="#k-' + k.id + '">' + esc(kName(k)) + '</a><div class="s">' + esc(fName(D.firmen[k.firmaId])) + '</div></div></li>').join('') + '</ul>' : '') + '</div></section>';
+
+  const n = COLS.map(c => Object.keys(D[c]).length);
+  const ex = '<section class="panel"><div class="panel-h"><h2>Sicherung und Export</h2></div><div class="panel-b"><p style="margin-top:0">Die Excel-Datei enthält alle Tabellen zum Weiterarbeiten oder für eine Übergabe. Die Sicherung lässt sich hier wieder einspielen, falls das CRM einmal umziehen muss.</p>' +
+    '<p class="muted" style="font-size:13px">' + n[0] + ' Unternehmen · ' + n[1] + ' Kontakte · ' + n[2] + ' Anfragen · ' + n[3] + ' Verlaufseinträge · ' + n[4] + ' Vorlagen</p>' +
+    '<div class="actions"><button class="btn pri" data-act="exportXlsx">Excel-Datei speichern</button><button class="btn" data-act="exportJson">Sicherung speichern</button><button class="btn w" data-act="importJson">Sicherung einspielen</button></div>' +
+    '<p class="muted" style="font-size:13px;margin-bottom:0">Empfehlung: zum Ende jedes Semesters eine Sicherung speichern.</p></div></section>';
+
+  return h + '<div class="g2"><div class="stack">' + zugangPanel() + t + modell + ds + '</div><div class="stack">' + ex + rules + '</div></div>';
+}
+
+/* ---------- Formulare ---------- */
+function berichtetOpts(firmaId, selfId, val){
+  const rank = k => ({chef:0, fuehrung:1, mitarbeiter:2}[posOf(k)] ?? 3);
+  const ks = Object.values(S.data.kontakte).filter(k => k.firmaId === firmaId && k.id !== selfId).sort((a,b) => rank(a) - rank(b));
+  return opts(ks.map(k => ({v:k.id, l:kName(k) + (k.position ? ', ' + k.position : '')})), val, 'Niemand oder unbekannt');
+}
+function kontaktOpts(firmaId, val){
+  const ks = Object.values(S.data.kontakte).filter(k => !firmaId || k.firmaId === firmaId).sort((a,b) => kName(a).localeCompare(kName(b), 'de'));
+  return opts(ks.map(k => ({v:k.id, l:kName(k) + (firmaId ? '' : ' · ' + fName(S.data.firmen[k.firmaId]))})), val, 'Kein bestimmter Kontakt');
+}
+function firmenOpts(val, empty){ return opts(Object.values(S.data.firmen).sort(byName).map(f => ({v:f.id, l:f.name})), val, empty); }
+function openKontaktForm(id, preset){
+  const D = S.data;
+  if (!Object.keys(D.firmen).length){
+    openInfo('Zuerst ein Unternehmen anlegen', 'Jeder Ansprechpartner gehört zu einem Unternehmen. Lege zuerst das Unternehmen an, danach die Person.', '<button type="button" class="btn pri" data-act="newFirma">Unternehmen anlegen</button>');
+    return;
+  }
+  if (id && !D.kontakte[id]) return;
+  const k = id ? Object.assign({}, D.kontakte[id]) : Object.assign({anrede:'', form:'Sie', erreichbarkeit:'kalt', verbindung:'Keine', verantwortlich:meId()}, preset || {});
+  const st0 = POS[k.positionStufe] ? k.positionStufe : (id ? posOf(k) : '');
+  const posList = POS_ORDER.map(p => ({v:p, l:POS[p].l, h:POS[p].h}));
+  const body = '<div class="fg">' +
+    '<div class="fsec">Wer ist das?</div>' +
+    F('Anrede', 'm-anrede', sel('m-anrede', 'anrede', opts([{v:'Frau', l:'Frau'}, {v:'Herr', l:'Herr'}, {v:'', l:'Neutral (Guten Tag Vorname Nachname)'}], k.anrede))) +
+    F('Titel', 'm-titel', inp('m-titel', 'titel', k.titel, 'placeholder="z.B. Dr., sonst leer lassen"')) +
+    F('Vorname', 'm-vorname', inp('m-vorname', 'vorname', k.vorname)) +
+    F('Nachname', 'm-nachname', inp('m-nachname', 'nachname', k.nachname, 'required')) +
+    F('Unternehmen', 'm-firmaId', sel('m-firmaId', 'firmaId', firmenOpts(k.firmaId, 'Bitte wählen'), 'required'), {full:true, hint:'Fehlt das Unternehmen? Lege es zuerst unter Unternehmen an.'}) +
+    '<div class="fsec">Wie wichtig ist die Person?</div>' +
+    F('1. Jobtitel', 'm-position', inp('m-position', 'position', k.position, 'placeholder="So wie er auf LinkedIn oder der Webseite steht, z.B. Head of HR"'), {full:true, hint:'<span class="erkannt" id="m-erkannt"></span>'}) +
+    group('2. Wie hoch sitzt die Person?', radios('positionStufe', posList, st0, true), 'Wird aus dem Jobtitel vorgeschlagen. Du kannst es ändern.') +
+    group('3. Kennt uns die Person schon?', radios('erreichbarkeit', KENNT, normKennt(k.erreichbarkeit))) +
+    group('4. Hat die Person einen Bezug zur HfWU?', radios('verbindung', HFWU, normHfwu(k.verbindung))) +
+    '<div class="result" id="m-preview"></div>' +
+    '<details class="more"' + (k.klasseManuell ? ' open' : '') + '><summary>Wichtigkeit stimmt nicht? Selbst festlegen</summary><div class="fg">' +
+      F('Wichtigkeit', 'm-klasseManuell', sel('m-klasseManuell', 'klasseManuell', opts([{v:'', l:'Vorschlag übernehmen'}, {v:'A', l:'Top'}, {v:'B', l:'Wichtig'}, {v:'C', l:'Normal'}], k.klasseManuell))) +
+      F('Warum?', 'm-klasseBegruendung', inp('m-klasseBegruendung', 'klasseBegruendung', k.klasseBegruendung, 'placeholder="z.B. hat schon zweimal bei uns gesprochen"')) +
+    '</div></details>' +
+    '<div class="fsec">Wie erreichen wir die Person?</div>' +
+    F('E-Mail', 'm-email', inp('m-email', 'email', k.email, 'type="email"')) +
+    F('Telefon', 'm-telefon', inp('m-telefon', 'telefon', k.telefon, 'type="tel"')) +
+    F('LinkedIn', 'm-linkedin', inp('m-linkedin', 'linkedin', k.linkedin, 'type="url" placeholder="https://www.linkedin.com/in/..."')) +
+    F('Vorzimmer / Assistenz', 'm-assistenz', inp('m-assistenz', 'assistenz', k.assistenz, 'placeholder="Name und Kontakt"')) +
+    '<div class="fsec">Wer kümmert sich?</div>' +
+    F('Verantwortlich', 'm-verantwortlich', sel('m-verantwortlich', 'verantwortlich', teamOpts(k.verantwortlich))) +
+    F('Woher hast du die Daten?', 'm-quelle', inp('m-quelle', 'quelle', k.quelle, 'required list="dl-quelle" placeholder="z.B. LinkedIn"'), {hint:'Pflichtfeld wegen Datenschutz.'}) +
+    F('Nächster Schritt', 'm-naechsterSchritt', inp('m-naechsterSchritt', 'naechsterSchritt', k.naechsterSchritt, 'placeholder="z.B. Erstanschreiben senden"')) +
+    F('Bis wann?', 'm-wiedervorlage', inp('m-wiedervorlage', 'wiedervorlage', k.wiedervorlage, 'type="date"')) +
+    '<details class="more"><summary>Mehr Angaben (freiwillig)</summary><div class="fg">' +
+      F('Rolle für uns', 'm-rolle', sel('m-rolle', 'rolle', opts(ROLLEN, k.rolle, 'Noch unklar')), {full:true}) +
+      F('Berichtet an', 'm-berichtetAn', sel('m-berichtetAn', 'berichtetAn', berichtetOpts(k.firmaId, k.id, k.berichtetAn)), {hint:'Wer ist der Chef dieser Person? Daraus entsteht das Organigramm.'}) +
+      F('Ansprache', 'm-form', sel('m-form', 'form', opts([{v:'Sie', l:'Sie'}, {v:'Du', l:'Du'}], k.form))) +
+      F('Gesprächsaufhänger', 'm-aufhaenger', area('m-aufhaenger', 'aufhaenger', k.aufhaenger, 'placeholder="Gemeinsame Bekannte, letzter Vortrag, Themen"'), {full:true, hint:'Sachlich bleiben: Jede Person darf erfahren, was über sie gespeichert ist.'}) +
+    '</div></details>' +
+    '</div>';
+  openModal(id ? 'Kontakt bearbeiten' : 'Neuer Kontakt', body, {
+    left: id ? '<button type="button" class="btn danger left" data-act="delKontakt" data-id="' + id + '">Löschen</button>' : '',
+    onOpen(root){
+      const form = root.querySelector('form');
+      const showErkannt = () => {
+        const el = root.querySelector('#m-erkannt'), t = root.querySelector('#m-position').value;
+        if (!t.trim()){ el.textContent = ''; el.className = 'erkannt'; return null; }
+        const d = erkenneTitel(t);
+        if (d){ el.innerHTML = '<b>Erkannt: ' + POS[d.s].l + '.</b> ' + esc(d.e); el.className = 'erkannt'; }
+        else { el.textContent = 'Titel nicht erkannt. Wähle unten selbst. Im Zweifel „Mitarbeiter“ und im Team fragen.'; el.className = 'erkannt no'; }
+        return d;
+      };
+      const upd = () => {
+        const v = readForm(form);
+        const fm = D.firmen[v.firmaId] || null;
+        const w = wichtigkeit(v, fm);
+        root.querySelector('#m-preview').innerHTML = '<div class="eyebrow" style="margin-bottom:8px">Ergebnis</div>' + wichtigBox(w, v);
+      };
+      root.querySelector('#m-position').addEventListener('input', () => {
+        const d = showErkannt();
+        if (d){ const r = form.querySelector('input[name="positionStufe"][value="' + d.s + '"]'); if (r) r.checked = true; }
+        upd();
+      });
+      form.addEventListener('input', upd);
+      form.addEventListener('change', upd);
+      root.querySelector('#m-firmaId').addEventListener('change', e => { root.querySelector('#m-berichtetAn').innerHTML = berichtetOpts(e.target.value, k.id, ''); });
+      showErkannt(); upd();
+    },
+    async onSubmit(v){
+      const obj = Object.assign({}, k, v);
+      const nid = await put('kontakte', obj);
+      toast('Kontakt gespeichert');
+      if (!id) location.hash = '#k-' + nid;
+    }
+  });
+}
+function openFirmaForm(id){
+  const D = S.data;
+  if (id && !D.firmen[id]) return;
+  const f = id ? Object.assign({}, D.firmen[id]) : {stand:'Kein Kontakt', verantwortlich:meId()};
+  const bekList = BEK_ORDER.map(b => ({v:b, l:BEK[b].l, h:BEK[b].h}));
+  const body = '<div class="fg">' +
+    F('Name', 'm-name', inp('m-name', 'name', f.name, 'required placeholder="z.B. Kreissparkasse Esslingen-Nürtingen"'), {full:true}) +
+    group('Wie bekannt ist das Unternehmen?', radios('bekanntheit', bekList, f.bekanntheit, true), '<b>Faustregel:</b> Würden deine Eltern den Namen kennen? Ja: fast jeder. Vielleicht: Region. Nein: eher unbekannt. Unsicher? Nimm die Mitte.') +
+    F('Standort (Stadt)', 'm-standort', inp('m-standort', 'standort', f.standort, 'placeholder="z.B. Stuttgart"'), {full:true, hint:'<span class="erkannt" id="m-ort"></span>'}) +
+    group('Wie nah ist das Unternehmen an der HfWU?', radios('naehe', NAEHE_ORDER.map(n => ({v:n, l:NAEHE[n].l, h:NAEHE[n].h})), naeheOf(f), true), 'Wird aus der Stadt vorgeschlagen. Je näher, desto wichtiger sind die Kontakte dort.') +
+    '<label class="cbline"><input type="checkbox" name="wunschpartner" id="m-wunschpartner"' + (f.wunschpartner ? ' checked' : '') + '><span><b>Wunschpartner</b><br><span class="muted" style="font-size:13px">Da wollen wir als Verein unbedingt hin. Wird in Listen oben angezeigt.</span></span></label>' +
+    F('Branche', 'm-branche', sel('m-branche', 'branche', opts(BRANCHEN, f.branche, 'Bitte wählen'))) +
+    F('Stand', 'm-stand', sel('m-stand', 'stand', opts(STAND, f.stand))) +
+    F('Verantwortlich', 'm-verantwortlich', sel('m-verantwortlich', 'verantwortlich', teamOpts(f.verantwortlich))) +
+    '<details class="more"><summary>Mehr Angaben (freiwillig)</summary><div class="fg">' +
+      F('Webseite', 'm-webseite', inp('m-webseite', 'webseite', f.webseite, 'type="url" placeholder="https://"')) +
+      F('Entfernung zur HfWU in km', 'm-entfernung', inp('m-entfernung', 'entfernung', f.entfernung, 'type="number" min="0" step="1" inputmode="numeric"')) +
+      '<label class="cbline"><input type="checkbox" name="sponsoringDenkbar" id="m-sponsoring"' + (f.sponsoringDenkbar || f.sponsoring === 'ja' ? ' checked' : '') + '><span>Sponsoring denkbar: Das Unternehmen könnte uns auch finanziell unterstützen.</span></label>' +
+      F('Notizen', 'm-notizen', area('m-notizen', 'notizen', f.notizen), {full:true}) +
+    '</div></details>' +
+    '</div>';
+  openModal(id ? 'Unternehmen bearbeiten' : 'Neues Unternehmen', body, {
+    left: id ? '<button type="button" class="btn danger left" data-act="delFirma" data-id="' + id + '">Löschen</button>' : '',
+    onOpen(root){
+      const ort = root.querySelector('#m-standort'), out = root.querySelector('#m-ort');
+      const show = (setRadio) => {
+        const t = ort.value;
+        if (!t.trim()){ out.textContent = ''; out.className = 'erkannt'; return; }
+        const o = erkenneOrt(t);
+        if (o){
+          out.innerHTML = '<b>Erkannt: ' + esc(o.name) + ', ca. ' + o.km + ' km Luftlinie von Nürtingen.</b> ' + NAEHE[o.n].l + '.';
+          out.className = 'erkannt';
+          if (setRadio){
+            const r = root.querySelector('input[name="naehe"][value="' + o.n + '"]'); if (r) r.checked = true;
+            const e = root.querySelector('#m-entfernung'); if (e) e.value = o.km;
+          }
+        } else {
+          out.textContent = 'Stadt nicht in der Liste. Schätze selbst: bis etwa 45 Minuten Fahrt ist nah, bis etwa 1,5 Stunden mittel, alles darüber weit.';
+          out.className = 'erkannt no';
+        }
+      };
+      ort.addEventListener('input', () => show(true));
+      show(false);
+    },
+    async onSubmit(v){
+      const nid = await put('firmen', Object.assign({}, f, v));
+      toast('Unternehmen gespeichert');
+      if (!id) location.hash = '#u-' + nid;
+    }
+  });
+}
+function openAnfrageForm(id, preset){
+  const D = S.data;
+  if (id && !D.anfragen[id]) return;
+  const a = id ? Object.assign({}, D.anfragen[id]) : Object.assign({stufe:'recherche', semester:semesterOf(todayStr()), verantwortlich:meId(), format:FORMATE[0]}, preset || {});
+  const sems = semesterList(); if (a.semester && !sems.includes(a.semester)) sems.push(a.semester);
+  const body = '<div class="fg">' +
+    F('Format', 'm-format', sel('m-format', 'format', opts(FORMATE, a.format), 'required')) +
+    F('Thema oder Titel', 'm-titel', inp('m-titel', 'titel', a.titel, 'placeholder="optional, z.B. Besuch im Handelsraum"')) +
+    F('Unternehmen', 'm-firmaId', sel('m-firmaId', 'firmaId', firmenOpts(a.firmaId, 'Bitte wählen'), 'required')) +
+    F('Ansprechpartner', 'm-kontaktId', sel('m-kontaktId', 'kontaktId', kontaktOpts(a.firmaId || '__none', a.kontaktId))) +
+    F('Stufe', 'm-stufe', sel('m-stufe', 'stufe', opts(ALLE_STUFEN, a.stufe))) +
+    F('Semester', 'm-semester', sel('m-semester', 'semester', opts(sems, a.semester, 'Noch offen'))) +
+    F('Wunschtermin', 'm-wunschtermin', inp('m-wunschtermin', 'wunschtermin', a.wunschtermin, 'type="date"')) +
+    F('Fester Termin', 'm-termin', inp('m-termin', 'termin', a.termin, 'type="date"')) +
+    F('Teilnehmer geplant', 'm-teilnehmerGeplant', inp('m-teilnehmerGeplant', 'teilnehmerGeplant', a.teilnehmerGeplant, 'type="number" min="0" inputmode="numeric"')) +
+    F('Teilnehmer tatsächlich', 'm-teilnehmerTatsaechlich', inp('m-teilnehmerTatsaechlich', 'teilnehmerTatsaechlich', a.teilnehmerTatsaechlich, 'type="number" min="0" inputmode="numeric"')) +
+    F('Verantwortlich', 'm-verantwortlich', sel('m-verantwortlich', 'verantwortlich', teamOpts(a.verantwortlich))) +
+    F('Nächster Schritt', 'm-naechsterSchritt', inp('m-naechsterSchritt', 'naechsterSchritt', a.naechsterSchritt)) +
+    F('Bis wann?', 'm-wiedervorlage', inp('m-wiedervorlage', 'wiedervorlage', a.wiedervorlage, 'type="date"')) +
+    F('Notizen', 'm-notizen', area('m-notizen', 'notizen', a.notizen, 'placeholder="Ablauf, Raum, Verpflegung, Absprachen"'), {full:true}) +
+    '</div>';
+  openModal(id ? 'Anfrage bearbeiten' : 'Neue Anfrage', body, {
+    left: id ? '<button type="button" class="btn danger left" data-act="delAnfrage" data-id="' + id + '">Löschen</button>' : '',
+    onOpen(root){
+      root.querySelector('#m-firmaId').addEventListener('change', e => { root.querySelector('#m-kontaktId').innerHTML = kontaktOpts(e.target.value || '__none', ''); });
+    },
+    async onSubmit(v){
+      await put('anfragen', Object.assign({}, a, v));
+      toast('Anfrage gespeichert');
+    }
+  });
+}
+function openVerlaufForm(preset){
+  const D = S.data, k = D.kontakte[preset.kontakt];
+  const firmaId = preset.firma || (k && k.firmaId) || '';
+  const kl = k ? kontaktKlasse(k) : 'B';
+  const anfr = Object.values(D.anfragen).filter(a => !firmaId || a.firmaId === firmaId);
+  const body = '<div class="fg">' +
+    F('Datum', 'm-datum', inp('m-datum', 'datum', todayStr(), 'type="date" required')) +
+    F('Art', 'm-art', sel('m-art', 'art', opts(ARTEN, 'E-Mail'))) +
+    F('Kontakt', 'm-kontaktId', sel('m-kontaktId', 'kontaktId', kontaktOpts(firmaId, k ? k.id : ''))) +
+    F('Zu welcher Anfrage?', 'm-anfrageId', sel('m-anfrageId', 'anfrageId', opts(anfr.map(a => ({v:a.id, l:fmtKurz(a.format) + ' · ' + fName(D.firmen[a.firmaId]) + ' · ' + stufeLabel(a.stufe)})), '', 'Keine bestimmte'))) +
+    F('Was ist passiert?', 'm-inhalt', area('m-inhalt', 'inhalt', '', 'required placeholder="z.B. Erstanschreiben wegen Exkursion im März gesendet"'), {full:true}) +
+    F('Ergebnis', 'm-ergebnis', inp('m-ergebnis', 'ergebnis', '', 'placeholder="z.B. Zusage, Rückruf vereinbart, keine Antwort"')) +
+    F('Eingetragen von', 'm-von', sel('m-von', 'von', teamOpts(meId()))) +
+    '<div class="fsec">Danach</div>' +
+    '<label class="cbline"><input type="checkbox" name="update" id="m-update" checked><span>Nächsten Schritt beim Kontakt aktualisieren</span></label>' +
+    F('Nächster Schritt', 'm-naechsterSchritt', inp('m-naechsterSchritt', 'naechsterSchritt', 'Nachfassen')) +
+    F('Bis wann?', 'm-wiedervorlage', inp('m-wiedervorlage', 'wiedervorlage', addDays(todayStr(), NACHFASSEN[kl]), 'type="date"'), {hint:'Vorschlag: Top nach 14 Tagen, sonst nach 7 Tagen.'}) +
+    F('Kennt uns die Person jetzt?', 'm-erreichbarkeit', sel('m-erreichbarkeit', 'erreichbarkeit', opts(KENNT, k ? normKennt(k.erreichbarkeit) : 'kalt'))) +
+    '</div>';
+  openModal('Verlauf eintragen', body, {
+    onOpen(root){
+      const ks = root.querySelector('#m-kontaktId');
+      const sync = () => {
+        const kk = D.kontakte[ks.value];
+        root.querySelector('#m-update').disabled = !kk;
+        if (kk){ root.querySelector('#m-erreichbarkeit').value = normKennt(kk.erreichbarkeit); root.querySelector('#m-wiedervorlage').value = addDays(todayStr(), NACHFASSEN[kontaktKlasse(kk)]); }
+      };
+      ks.addEventListener('change', sync); sync();
+      setTimeout(() => { const t = root.querySelector('#m-inhalt'); if (t) t.focus(); }, 0);
+    },
+    async onSubmit(v){
+      const kk = D.kontakte[v.kontaktId];
+      await put('verlauf', {datum:v.datum, art:v.art, kontaktId:v.kontaktId, firmaId:firmaId || (kk && kk.firmaId) || '', anfrageId:v.anfrageId, inhalt:v.inhalt, ergebnis:v.ergebnis, von:v.von});
+      if (kk && v.update){
+        await put('kontakte', Object.assign({}, kk, {naechsterSchritt:v.naechsterSchritt, wiedervorlage:v.wiedervorlage, erreichbarkeit:v.erreichbarkeit}));
+      }
+      toast('Eingetragen' + (kk && v.update && isDate(v.wiedervorlage) ? '. Wiedervorlage am ' + fmtDE(v.wiedervorlage) : ''));
+    }
+  });
+}
+function openSchritt(id){
+  const k = S.data.kontakte[id]; if (!k) return;
+  openModal('Nächster Schritt', '<div class="fg">' +
+    F('Was ist zu tun?', 'm-naechsterSchritt', inp('m-naechsterSchritt', 'naechsterSchritt', k.naechsterSchritt || 'Nachfassen'), {full:true}) +
+    F('Bis wann?', 'm-wiedervorlage', inp('m-wiedervorlage', 'wiedervorlage', k.wiedervorlage || addDays(todayStr(), NACHFASSEN[kontaktKlasse(k)]), 'type="date"')) + '</div>', {
+    narrow:true,
+    left: k.naechsterSchritt || k.wiedervorlage ? '<button type="button" class="btn left" data-act="schrittErledigt" data-id="' + id + '">Erledigt</button>' : '',
+    async onSubmit(v){ await put('kontakte', Object.assign({}, k, v)); toast('Nächster Schritt gespeichert'); }
+  });
+}
+function briefanrede(k){
+  if (k.form === 'Du') return ('Hallo ' + (k.vorname || k.nachname || '')).trim();
+  const tn = [k.titel, k.nachname].filter(Boolean).join(' ');
+  if (k.anrede === 'Frau') return 'Sehr geehrte Frau ' + tn;
+  if (k.anrede === 'Herr') return 'Sehr geehrter Herr ' + tn;
+  return 'Guten Tag ' + [k.vorname, k.nachname].filter(Boolean).join(' ');
+}
+function fillTpl(t, k){
+  const f = S.data.firmen[k.firmaId];
+  const map = {briefanrede:briefanrede(k), vorname:k.vorname || '', nachname:k.nachname || '', titel:k.titel || '', position:k.position || '', firma:f ? f.name : '', absender:tName(meId()) || '[Dein Name]', semester:semesterOf(todayStr())};
+  return String(t || '').replace(/\{(\w+)\}/g, (m, key) => Object.prototype.hasOwnProperty.call(map, key) ? map[key] : m);
+}
+function openAnschreiben(id){
+  const D = S.data, k = D.kontakte[id]; if (!k) return;
+  const vs = Object.values(D.vorlagen).sort(byName);
+  if (!vs.length){ openInfo('Noch keine Vorlagen', 'Lege zuerst unter Vorlagen ein Anschreiben an.', '<a class="btn pri" href="#vorlagen" data-close>Zu den Vorlagen</a>'); return; }
+  const kl = kontaktKlasse(k);
+  const start = (kl === 'A' && vs.find(v => /top/i.test(v.name))) || vs[0];
+  const body = '<div class="fg">' +
+    (meId() ? '' : '<div class="note warn full" style="margin:0"><b>Absender fehlt.</b> Wähle oben rechts unter „Ich bin“ deinen Namen, dann setzt das CRM ihn als Absender ein.</div>') +
+    (kl === 'A' ? '<div class="note gold full" style="margin:0"><b>Top-Kontakt.</b> Die Vorlage ist nur ein Gerüst. Schreib persönlich und sprich dich vorher im Team ab.</div>' : '') +
+    F('Vorlage', 'm-vorlage', sel('m-vorlage', 'vorlage', opts(vs.map(v => ({v:v.id, l:v.name + (v.format ? ' · ' + fmtKurz(v.format) : '')})), start.id)), {full:true}) +
+    (k.email ? '<div class="f full"><label>An</label><div class="copyrow"><span>' + esc(k.email) + '</span><button type="button" class="btn ghost sm" data-act="copy" data-text="' + esc(k.email) + '">Adresse kopieren</button></div></div>' : '') +
+    F('Betreff', 'm-betreff', inp('m-betreff', 'betreff', ''), {full:true}) +
+    F('Text', 'm-text', area('m-text', 'text', '', 'class="tall"'), {full:true, hint: k.aufhaenger ? 'Gesprächsaufhänger: ' + esc(k.aufhaenger) : 'Ersetze die Stellen in eckigen Klammern, bevor du die Mail abschickst.'}) +
+    '<div class="full actions"><button type="button" class="btn" data-act="copyField" data-target="m-betreff">Betreff kopieren</button><button type="button" class="btn" data-act="copyField" data-target="m-text">Text kopieren</button></div>' +
+    '</div>';
+  openModal('Anschreiben an ' + kName(k), body, {
+    submit:'Als gesendet eintragen', noFocus:true,
+    onOpen(root){
+      const s = root.querySelector('#m-vorlage');
+      const fill = () => { const v = D.vorlagen[s.value]; if (!v) return; root.querySelector('#m-betreff').value = fillTpl(v.betreff, k); root.querySelector('#m-text').value = fillTpl(v.text, k); };
+      s.addEventListener('change', fill); fill();
+    },
+    async onSubmit(v){
+      const wv = addDays(todayStr(), NACHFASSEN[kl]);
+      await put('verlauf', {datum:todayStr(), art:'E-Mail', kontaktId:k.id, firmaId:k.firmaId || '', inhalt:'Anschreiben gesendet: ' + v.betreff, ergebnis:'Warte auf Antwort', von:meId()});
+      await put('kontakte', Object.assign({}, k, {naechsterSchritt:'Nachfassen', wiedervorlage:wv}));
+      toast('Eingetragen. Wiedervorlage am ' + fmtDE(wv));
+    }
+  });
+}
+function openVorlageForm(id){
+  if (id && !S.data.vorlagen[id]) return;
+  const v = id ? Object.assign({}, S.data.vorlagen[id]) : {format:''};
+  openModal(id ? 'Vorlage bearbeiten' : 'Neue Vorlage', '<div class="fg">' +
+    F('Name', 'm-name', inp('m-name', 'name', v.name, 'required placeholder="z.B. Erstanschreiben Exkursion"')) +
+    F('Format', 'm-format', sel('m-format', 'format', opts(FORMATE, v.format, 'Für alle Formate'))) +
+    F('Betreff', 'm-betreff', inp('m-betreff', 'betreff', v.betreff), {full:true}) +
+    F('Text', 'm-text', area('m-text', 'text', v.text, 'class="tall" required'), {full:true, hint:'Platzhalter: ' + PLATZHALTER.map(p => p[0]).join(' ')}) + '</div>', {
+    async onSubmit(val){ await put('vorlagen', Object.assign({}, v, val)); toast('Vorlage gespeichert'); }
+  });
+}
+function openTeamForm(id){
+  const m = id ? S.data.team[id] : null;
+  if (id && !m) return;
+  openModal(id ? 'Mitglied umbenennen' : 'Mitglied hinzufügen', '<div class="fg">' + F('Name', 'm-name', inp('m-name', 'name', m ? m.name : '', 'required placeholder="Vor- und Nachname"'), {full:true}) + '</div>', {
+    narrow:true,
+    async onSubmit(v){
+      const nid = await put('team', Object.assign({}, m || {}, {name:v.name}));
+      if (!id && !meId()){ S.me = nid; lsSet('ep-crm-ich', nid); }
+      toast(id ? 'Name geändert' : v.name + ' gehört jetzt zum Team');
+    }
+  });
+}
+function openTransfer(fromId){
+  const D = S.data;
+  openModal('Kontakte übertragen', '<p>Zum Beispiel bei der Semesterübergabe: Alle Kontakte, Unternehmen und offenen Anfragen einer Person gehen an eine andere.</p><div class="fg">' +
+    F('Von', 'm-von', sel('m-von', 'von', teamOpts(fromId || '', 'Bitte wählen'), 'required')) +
+    F('An', 'm-an', sel('m-an', 'an', teamOpts('', 'Bitte wählen'), 'required')) + '</div>', {
+    submit:'Übertragen',
+    async onSubmit(v){
+      if (v.von === v.an){ toast('Bitte zwei verschiedene Personen wählen.', 'err'); throw new Error('same'); }
+      let n = 0;
+      for (const c of ['kontakte','firmen','anfragen']){
+        for (const x of Object.values(D[c])){
+          if (x.verantwortlich !== v.von) continue;
+          if (c === 'anfragen' && ['nachbereitet','abgesagt'].includes(x.stufe)) continue;
+          await put(c, Object.assign({}, x, {verantwortlich:v.an})); n++;
+        }
+      }
+      toast(n + ' Einträge an ' + tName(v.an) + ' übertragen');
+    }
+  });
+}
+
+/* ---------- Export und Import ---------- */
+function loadScript(src){
+  return new Promise((res, rej) => {
+    if (window.XLSX) return res();
+    const s = document.createElement('script'); s.src = src; s.onload = () => res(); s.onerror = () => rej(new Error('Die Excel-Bibliothek konnte nicht geladen werden.'));
+    document.head.appendChild(s);
+  });
+}
+async function getDownloads(){
+  return {save: async o => {
+    const typ = /\.xlsx$/.test(o.filename) ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' : 'application/json';
+    const url = URL.createObjectURL(new Blob([o.data], {type:typ}));
+    const a = document.createElement('a'); a.href = url; a.download = o.filename; a.rel = 'noopener';
+    document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1500);
+  }};
+}
+async function saveFile(dl, filename, data){
+  try { await dl.save({filename:filename, data:data}); toast('Datei gespeichert'); }
+  catch(e){ toast('Speichern nicht möglich' + (e && e.message ? ': ' + e.message : '.'), 'err'); }
+}
+async function exportXlsx(){
+  const dl = await getDownloads(); if (!dl) return;
+  try { await loadScript(XLSX_URL); } catch(e){ toast(e.message, 'err'); return; }
+  const D = S.data, XL = window.XLSX, wb = XL.utils.book_new();
+  const add = (name, rows) => XL.utils.book_append_sheet(wb, XL.utils.json_to_sheet(rows.length ? rows : [{Hinweis:'Keine Einträge'}]), name);
+  add('Kontakte', Object.values(D.kontakte).map(k => { const w = wichtigkeit(k); return {
+    'Wichtigkeit':KL[w.kl].n, 'Warum':warumSatz(w), 'Anrede':k.anrede || '', 'Titel':k.titel || '', 'Vorname':k.vorname || '', 'Nachname':k.nachname || '',
+    'Unternehmen':fName(D.firmen[k.firmaId]), 'Nähe':w.nz ? NAEHE[w.nz].l : '', 'Jobtitel':k.position || '', 'Stufe':w.st ? POS[w.st].l : '', 'Kennt uns':find(KENNT, normKennt(k.erreichbarkeit)).k,
+    'HfWU-Bezug':k.verbindung || 'Keine', 'Rolle':k.rolle || '', 'Berichtet an':D.kontakte[k.berichtetAn] ? kName(D.kontakte[k.berichtetAn]) : '',
+    'E-Mail':k.email || '', 'Telefon':k.telefon || '', 'LinkedIn':k.linkedin || '', 'Vorzimmer':k.assistenz || '', 'Ansprache':k.form || '',
+    'Gesprächsaufhänger':k.aufhaenger || '', 'Verantwortlich':tName(k.verantwortlich), 'Nächster Schritt':k.naechsterSchritt || '', 'Wiedervorlage':fmtDE(k.wiedervorlage),
+    'Letzter Kontakt':fmtDE(S.letzter[k.id]), 'Quelle':k.quelle || '', 'Von Hand gesetzt':w.manuell ? 'ja' : '', 'Begründung':k.klasseBegruendung || '', 'Angelegt':fmtDE(dateOf(k.erstellt))}; }));
+  add('Unternehmen', Object.values(D.firmen).map(f => ({
+    'Name':f.name || '', 'Bekanntheit':BEK[f.bekanntheit] ? BEK[f.bekanntheit].l : '', 'Wunschpartner':f.wunschpartner ? 'ja' : '', 'Branche':f.branche || '',
+    'Standort':f.standort || '', 'Nähe':naeheOf(f) ? NAEHE[naeheOf(f)].l : '', 'Entfernung km':f.entfernung || (erkenneOrt(f.standort) || {}).km || '', 'Webseite':f.webseite || '', 'Sponsoring denkbar':(f.sponsoringDenkbar || f.sponsoring === 'ja') ? 'ja' : '',
+    'Stand':f.stand || '', 'Verantwortlich':tName(f.verantwortlich), 'Notizen':f.notizen || ''})));
+  add('Anfragen', Object.values(D.anfragen).map(a => ({
+    'Format':a.format || '', 'Titel':a.titel || '', 'Unternehmen':fName(D.firmen[a.firmaId]), 'Ansprechpartner':D.kontakte[a.kontaktId] ? kName(D.kontakte[a.kontaktId]) : '',
+    'Stufe':stufeLabel(a.stufe), 'Semester':anfrageSemester(a), 'Wunschtermin':fmtDE(a.wunschtermin), 'Termin':fmtDE(a.termin),
+    'Teilnehmer geplant':a.teilnehmerGeplant || '', 'Teilnehmer tatsächlich':a.teilnehmerTatsaechlich || '', 'Verantwortlich':tName(a.verantwortlich),
+    'Nächster Schritt':a.naechsterSchritt || '', 'Wiedervorlage':fmtDE(a.wiedervorlage), 'Notizen':a.notizen || ''})));
+  add('Verlauf', Object.values(D.verlauf).sort((x,y) => String(y.datum).localeCompare(String(x.datum))).map(v => ({
+    'Datum':fmtDE(v.datum), 'Art':v.art || '', 'Kontakt':D.kontakte[v.kontaktId] ? kName(D.kontakte[v.kontaktId]) : '', 'Unternehmen':fName(D.firmen[v.firmaId] || D.firmen[(D.kontakte[v.kontaktId] || {}).firmaId]),
+    'Inhalt':v.inhalt || '', 'Ergebnis':v.ergebnis || '', 'Von':tName(v.von)})));
+  add('Vorlagen', Object.values(D.vorlagen).map(v => ({'Name':v.name || '', 'Format':v.format || 'Alle', 'Betreff':v.betreff || '', 'Text':v.text || ''})));
+  add('Team', Object.values(D.team).map(t => ({'Name':t.name || ''})));
+  const buf = XL.write(wb, {bookType:'xlsx', type:'array'});
+  await saveFile(dl, 'CRM Effekten Parkett ' + todayStr() + '.xlsx', buf);
+}
+async function exportJson(){
+  const dl = await getDownloads(); if (!dl) return;
+  const out = {app:'ep-crm', version:2, exportiert:new Date().toISOString()};
+  for (const c of COLS) out[c] = Object.values(S.data[c]);
+  await saveFile(dl, 'CRM Effekten Parkett Sicherung ' + todayStr() + '.json', JSON.stringify(out, null, 2));
+}
+async function importJson(file){
+  let data;
+  try { data = JSON.parse(await file.text()); } catch(e){ toast('Die Datei ist keine gültige Sicherung.', 'err'); return; }
+  if (!data || data.app !== 'ep-crm'){ toast('Die Datei ist keine Sicherung dieses CRM.', 'err'); return; }
+  const rows = [];
+  for (const c of COLS) for (const r of (Array.isArray(data[c]) ? data[c] : [])){
+    if (r && typeof r === 'object' && typeof r.id === 'string' && /^[A-Za-z0-9_-]{1,80}$/.test(r.id)) rows.push([c, r]);
+  }
+  const cnt = COLS.map(c => rows.filter(r => r[0] === c).length);
+  openConfirm('Sicherung einspielen', 'Die Datei enthält ' + cnt[0] + ' Unternehmen, ' + cnt[1] + ' Kontakte, ' + cnt[2] + ' Anfragen, ' + cnt[3] + ' Verlaufseinträge, ' + cnt[4] + ' Vorlagen und ' + cnt[5] + ' Teammitglieder. Einträge mit gleicher Kennung werden überschrieben, alle anderen bleiben erhalten.', 'Einspielen', async () => {
+    if (!S.db){ toast('Keine Verbindung zur Datenbank.', 'err'); throw new Error('nodb'); }
+    let n = 0;
+    for (const r of rows){
+      const body = Object.assign({}, r[1]); delete body.id;
+      try { await S.db.collection(r[0]).doc(r[1].id).set(body); n++; } catch(e){ writeErr(e); throw e; }
+    }
+    toast(n + ' Einträge eingespielt');
+  });
+}
+
+/* ---------- Aktionen ---------- */
+async function copyText(text, fallbackEl){
+  try { await navigator.clipboard.writeText(text); toast('Kopiert'); }
+  catch(e){ if (fallbackEl && fallbackEl.select){ fallbackEl.focus(); fallbackEl.select(); toast('Text ist markiert. Kopiere ihn mit Strg+C oder Cmd+C.'); } else toast('Kopieren hat nicht geklappt. Bitte von Hand markieren.', 'err'); }
+}
+async function moveStufe(id, dir){
+  const a = S.data.anfragen[id]; if (!a) return;
+  let i = STUFEN.findIndex(s => s.v === (a.stufe || 'recherche'));
+  i = Math.max(0, Math.min(STUFEN.length - 1, i + dir));
+  const neu = Object.assign({}, a, {stufe:STUFEN[i].v}), t = todayStr();
+  if (dir > 0){
+    const k = S.data.kontakte[a.kontaktId], kl = k ? kontaktKlasse(k) : 'B';
+    if (neu.stufe === 'erstkontakt'){ neu.naechsterSchritt = 'Nachfassen'; neu.wiedervorlage = addDays(t, NACHFASSEN[kl]); }
+    else if (neu.stufe === 'nachgefasst'){ neu.naechsterSchritt = 'Telefonisch nachhaken'; neu.wiedervorlage = addDays(t, 7); }
+    else if (neu.stufe === 'zugesagt'){ neu.naechsterSchritt = 'Termin und Ablauf abstimmen'; neu.wiedervorlage = addDays(t, 7); }
+    else if (neu.stufe === 'durchgefuehrt'){ neu.naechsterSchritt = 'Dank senden (innerhalb von 48 Stunden)'; neu.wiedervorlage = addDays(t, 2); }
+    else if (neu.stufe === 'nachbereitet'){ neu.naechsterSchritt = ''; neu.wiedervorlage = ''; }
+  }
+  await put('anfragen', neu);
+  toast('Verschoben nach „' + STUFEN[i].l + '“');
+}
+const ACT = {
+  ui: d => { S.ui[d.k] = d.v; render(); },
+  newKontakt: d => openKontaktForm(null, d.firma ? {firmaId:d.firma} : {}),
+  editKontakt: d => openKontaktForm(d.id),
+  delKontakt: d => {
+    const k = S.data.kontakte[d.id]; if (!k) return;
+    const vs = Object.values(S.data.verlauf).filter(v => v.kontaktId === d.id);
+    openConfirm('Kontakt löschen', esc(kName(k)) + ' wird endgültig gelöscht, zusammen mit ' + vs.length + ' Einträgen im Verlauf. Das lässt sich nicht rückgängig machen.', 'Endgültig löschen', async () => {
+      for (const v of vs) await del('verlauf', v.id);
+      await del('kontakte', d.id);
+      location.hash = '#kontakte'; toast('Kontakt gelöscht');
+    });
+  },
+  newFirma: () => openFirmaForm(null),
+  editFirma: d => openFirmaForm(d.id),
+  delFirma: d => {
+    const f = S.data.firmen[d.id]; if (!f) return;
+    const nk = Object.values(S.data.kontakte).filter(k => k.firmaId === d.id).length;
+    const na = Object.values(S.data.anfragen).filter(a => a.firmaId === d.id).length;
+    if (nk || na){ openInfo('Löschen nicht möglich', esc(f.name) + ' hat noch ' + nk + ' Ansprechpartner und ' + na + ' Anfragen. Lösche diese zuerst.'); return; }
+    openConfirm('Unternehmen löschen', esc(f.name) + ' wird endgültig gelöscht. Das lässt sich nicht rückgängig machen.', 'Endgültig löschen', async () => { await del('firmen', d.id); location.hash = '#unternehmen'; toast('Unternehmen gelöscht'); });
+  },
+  newAnfrage: d => openAnfrageForm(null, Object.assign({}, d.firma ? {firmaId:d.firma} : {}, d.kontakt ? {kontaktId:d.kontakt} : {})),
+  editAnfrage: d => openAnfrageForm(d.id),
+  delAnfrage: d => {
+    const a = S.data.anfragen[d.id]; if (!a) return;
+    openConfirm('Anfrage löschen', 'Die Anfrage „' + esc(a.titel || fmtKurz(a.format)) + '“ wird endgültig gelöscht.', 'Endgültig löschen', async () => { await del('anfragen', d.id); toast('Anfrage gelöscht'); });
+  },
+  stufe: d => moveStufe(d.id, Number(d.dir)).catch(() => {}),
+  newVerlauf: d => openVerlaufForm({kontakt:d.kontakt, firma:d.firma}),
+  delVerlauf: d => openConfirm('Eintrag löschen', 'Dieser Eintrag im Verlauf wird endgültig gelöscht.', 'Löschen', async () => { await del('verlauf', d.id); toast('Eintrag gelöscht'); }),
+  schritt: d => openSchritt(d.id),
+  schrittErledigt: async d => { const k = S.data.kontakte[d.id]; if (!k) return; closeModal(); try { await put('kontakte', Object.assign({}, k, {naechsterSchritt:'', wiedervorlage:''})); toast('Als erledigt markiert. Plane gleich den nächsten Schritt.'); } catch(e){} },
+  anschreiben: d => openAnschreiben(d.id),
+  newVorlage: () => openVorlageForm(null),
+  editVorlage: d => openVorlageForm(d.id),
+  delVorlage: d => { const v = S.data.vorlagen[d.id]; if (!v) return; openConfirm('Vorlage löschen', 'Die Vorlage „' + esc(v.name) + '“ wird endgültig gelöscht.', 'Löschen', async () => { await del('vorlagen', d.id); toast('Vorlage gelöscht'); }); },
+  newTeam: () => openTeamForm(null),
+  renameTeam: d => openTeamForm(d.id),
+  delTeam: d => {
+    const m = S.data.team[d.id]; if (!m) return;
+    const n = ['kontakte','firmen','anfragen'].reduce((s, c) => s + Object.values(S.data[c]).filter(x => x.verantwortlich === d.id).length, 0);
+    if (n){ openInfo('Erst übertragen', esc(m.name) + ' ist noch für ' + n + ' Einträge verantwortlich. Übertrage sie zuerst an eine andere Person.', '<button type="button" class="btn pri" data-act="transfer" data-von="' + d.id + '">Kontakte übertragen</button>'); return; }
+    openConfirm('Mitglied entfernen', esc(m.name) + ' wird aus dem Team entfernt.', 'Entfernen', async () => { await del('team', d.id); toast(m.name + ' wurde entfernt'); });
+  },
+  transfer: d => openTransfer(d.von),
+  exportXlsx: () => exportXlsx(),
+  exportJson: () => exportJson(),
+  importJson: () => { const i = $('#import-file'); i.value = ''; i.click(); },
+  copy: d => copyText(d.text),
+  copyField: d => { const el = document.getElementById(d.target); if (el) copyText(el.value, el); },
+  abmelden: () => abmelden(),
+  neuLaden: () => location.reload(),
+  modus: d => { AUTH.modus = d.m; AUTH.info = ''; renderGate(); },
+  pruefen: () => pruefeZugang(),
+  bestaetigt: async () => {
+    const u = AUTH.user; if (!u) return;
+    try { await u.reload(); await u.getIdToken(true); } catch(e){}
+    AUTH.user = AUTH.auth.currentUser || u;
+    if (!AUTH.user.emailVerified) toast('Noch nicht bestätigt. Klicke zuerst auf den Link in der E-Mail.', 'err');
+    pruefeZugang();
+  },
+  mailNochmal: async () => {
+    try { await AUTH.fb.sendEmailVerification(AUTH.user); toast('E-Mail ist unterwegs.'); }
+    catch(e){ toast(authFehler(e), 'err'); }
+  },
+  newZugang: () => openZugangForm(),
+  rolleZugang: d => {
+    const z = AUTH.zugang[d.id]; if (!z) return;
+    const neu = z.rolle === 'verwalter' ? 'mitglied' : 'verwalter';
+    openConfirm(neu === 'verwalter' ? 'In die Verwaltung' : 'Zum Mitglied machen', esc(d.id) + (neu === 'verwalter' ? ' kann danach selbst Leute freischalten und entfernen.' : ' kann danach niemanden mehr freischalten oder entfernen.'), 'Ändern', async () => {
+      const body = Object.assign({}, z, {rolle:neu}); delete body.id;
+      await zugangSchreiben(d.id, body); toast('Rolle geändert');
+    });
+  },
+  delZugang: d => {
+    if (!AUTH.zugang[d.id]) return;
+    openConfirm('Zugang entfernen', esc(d.id) + ' kommt danach nicht mehr ins CRM. Kontakte und Einträge der Person bleiben erhalten.', 'Entfernen', async () => {
+      await zugangSchreiben(d.id, null); toast('Zugang entfernt');
+    });
+  }
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const fn = ACT[el.dataset.act];
+  if (!fn) return;
+  e.preventDefault();
+  fn(el.dataset, el);
+});
+function onFilter(e){
+  const el = e.target;
+  if (!el.dataset || !el.dataset.filter) return;
+  S.ui[el.dataset.filter] = el.type === 'checkbox' ? el.checked : el.value;
+  scheduleRender();
+}
+document.addEventListener('input', onFilter);
+document.addEventListener('change', onFilter);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('#modal-root').firstChild) closeModal(); });
+$('#me-select').addEventListener('change', e => { S.me = e.target.value; lsSet('ep-crm-ich', S.me); lastTeamKey = ''; render(); });
+$('#import-file').addEventListener('change', e => { const f = e.target.files && e.target.files[0]; if (f) importJson(f); });
+window.addEventListener('hashchange', () => { closeModal(); render(); window.scrollTo(0, 0); });
+
+document.addEventListener('submit', e => { if (e.target && e.target.id === 'login'){ e.preventDefault(); loginSubmit(e.target); } });
+render();
+showGate('laden');
+connect();
+})();
+</script>
+
+</body></html>
